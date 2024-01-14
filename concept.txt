@@ -1,0 +1,95 @@
+Project get next line:
+
+Create a function that is reading the next line of whatever fd is called.
+remember the thread you are reading.
+Can handle multiple fds at once and doesnt loose its thread while reading.
+
+ ssize_t read(int fd, void *buf, size_t count);
+
+fd 1
+this is line one\n
+this is line two\n
+this is line three\n
+
+fd 2
+this is file two line one\n
+this is file two line two\n
+this is file two line three\n
+
+fd 3
+this is file three line one\n
+this is file three line two\n
+this is file three line two\n
+
+struct 
+fd_a
+fd_b
+fd_c
+fd_d
+fd_e
+fd_f
+fd_g
+fd_h
+fd_i
+
+
+Array of int
+
+
+char *get_next_line(int fd)
+{
+	
+}
+
+
+pseudocode implementation:
+
+struct
+*int line
+*int fd
+*int char # (optional)
+
+check if fd in int fd
+if fd is in int fd
+	check for line number
+malloc buff
+read buffsize
+while (\n# < int line)
+	read buffsize
+while (\n# <= int line +1)
+	search \n || \0
+if \n
+	fd exist?
+		safe fd to int fd
+		safe 1 to int line
+	form string and return
+if !\n
+	*buff_tmp = *buff
+	free *buff 
+	buff = malloc (buffsize *2 + 1)
+	while (*buff_tmp)
+		*buff++ = *buff_tmp++
+	read buffsize
+	search \n || \0
+		if \n
+			fd exist?
+				safe fd to int fd
+				safe 1 to int line
+	form string and return
+	
+
+
+
+
+
+char *get_next_line(int fd)
+{
+	int *buff;
+
+	malloc(sizeof(char *)1);
+	malloc(sizeof(char) * (buffsize + 1));
+	while(buff[i] != "\n" && i < buffsize && buff[i] != \0)
+		i++;
+	read(fd, void *buf, buffsize);
+
+}
