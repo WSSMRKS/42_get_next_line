@@ -1,9 +1,24 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    concept.txt                                        :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/02/05 19:47:23 by maweiss           #+#    #+#              #
+#    Updated: 2024/02/05 19:49:53 by maweiss          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 Project get next line:
 
 Create a function that is reading the next line of whatever fd is called.
-remember the thread you are reading.
-Can handle multiple fds at once and doesnt loose its thread while reading.
+remember the thread you are reading. --> done by read already
+TODO	BONUS Can handle multiple fds at once and doesnt loose its thread while reading. Use array of int!!
+TODO	BONUS Use only one static variable
 
+
+ 
  ssize_t read(int fd, void *buf, size_t count);
 
 fd 1
@@ -21,7 +36,7 @@ this is file three line one\n
 this is file three line two\n
 this is file three line two\n
 
-struct 
+struct
 fd_a
 fd_b
 fd_c
@@ -38,7 +53,7 @@ Array of int
 
 char *get_next_line(int fd)
 {
-	
+
 }
 
 
@@ -65,7 +80,7 @@ if \n
 	form string and return
 if !\n
 	*buff_tmp = *buff
-	free *buff 
+	free *buff
 	buff = malloc (buffsize *2 + 1)
 	while (*buff_tmp)
 		*buff++ = *buff_tmp++
@@ -76,7 +91,7 @@ if !\n
 				safe fd to int fd
 				safe 1 to int line
 	form string and return
-	
+
 
 
 
