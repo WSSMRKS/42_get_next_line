@@ -6,7 +6,7 @@
 #    By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/05 19:47:23 by maweiss           #+#    #+#              #
-#    Updated: 2024/02/07 14:13:45 by maweiss          ###   ########.fr        #
+#    Updated: 2024/02/07 17:39:16 by maweiss          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -196,8 +196,19 @@ _____________________________________
 case 2:
 ________________\n___________________
 case 3:
-______\n________________\n_________\n !! how to only split 
+______\n________________\n_________\n !! how to only split
 case 4:
 \n___________________________________
 case 5:
 ___________________________________\n
+
+
+1. check if its the clean call
+2. check if there has been calls before
+3. check if there is leftover in the array
+4. check if there is a newline in the string
+	yes?
+		safe stuff after newline
+		return stuff before newline
+	no?
+		read

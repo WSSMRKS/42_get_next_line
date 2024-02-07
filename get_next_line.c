@@ -6,7 +6,7 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 19:31:20 by maweiss           #+#    #+#             */
-/*   Updated: 2024/02/07 14:15:24 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/02/07 18:31:03 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,31 +224,69 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (sub);
 }
 
+int ft_read_join(char **stbuff, int fd)
+{
+	int		bytes_read;
+	char	buffer[BUFFER_SIZE + 1];
+	char	res;
+	char	*tmp;
 
+	bytes_read = read(fd, buffer, BUFFER_SIZE);
+	buffer[bytes_read] = 0;
+	if (bytes_read < BUFFER_SIZE && bytes_read == -1)
+		return (-1);
+	else if (bytes_read < BUFFER_SIZE && bytes_read == 0)
+		return (0);
+	else
+		tmp = stbuff[fd];
+		stbuff[fd] = ft_strjoin(stbuff[fd], buffer);
+		free(tmp);
+		if (bytes_read < BUFFER_SIZE)
+			return (2);
+		else
+			return (1);
+}
 
 char	*get_next_line(int fd)
 {
 	static char	*stbuff[1048576 + 1];
-	char		buffer[BUFFER_SIZE + 1];
-	int			bytes_read;
 	char		*delloc;
+	char		**rsplit;
+	char		*ret;
 
+	if (fd == -1)
+		//TODO Free everything
 	if (stbuff == NULL)
-		stbuff[1048576] = malloc(sizeof(char)); //to free
-	stbuff[1048576][0] = 0;
-	bytes_read = read(fd, buffer, BUFFER_SIZE);
-	buffer[bytes_read] = 0;
-	stbuff[fd] = ft_strdup(buffer); // to free
-	*delloc = ft_strchr(stbuff[fd], '\n');
-	if (delloc == &stbuff[bytes_read])
-
-
-
-
-
-
-
-	free(stbuff[1038576]);
+		stbuff[1048576] = malloc(sizeof(char)); //TODO to free
+	while (ret == NULL)
+	{
+		if (stbuff[fd] != NULL)
+		{
+			rsplit = ft_split_once(stbuff[fd], '\n'); //TODO split once
+			if (!rsplit)
+			{
+				//TODO Free everything;
+				//TODO print error;
+			}
+			else if (rsplit[1] == NULL)
+				ft_read_join(stbuff, fd);
+				//TODO handle return values right
+			else
+			{
+				stbuff[fd] = rsplit[1];
+				ret = rsplit[0];
+				free(rsplit);
+				return (ret);
+				//TODO still stuff to free?
+			}
+		}
+		else
+			ft_read_join(stbuff, fd);
+			//TODO handle return values right
+	}
+	free(stbuff[1048576]);
+	//TODO free everything;
+	return (ret);
 }
 
-
+//TODO Try to replace ft_split_once by ft_strchr & ft_substr & ft_strdup??
