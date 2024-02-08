@@ -6,153 +6,13 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 19:31:20 by maweiss           #+#    #+#             */
-/*   Updated: 2024/02/07 18:31:03 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/02/08 11:12:15 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // Implement a get next line function:
 
 #include "get_next_line.h"
-
-
-static void	ft_free(char **tofree)
-{
-	int	i;
-
-	if (!tofree)
-		return ;
-	i = 0;
-	while (tofree[i])
-	{
-		free((void *)tofree[i]);
-		i++;
-	}
-	free((void *)tofree);
-	return ;
-}
-
-static size_t	ft_str_len_count(char *str, char del, int mode)
-{
-	size_t	a;
-	size_t	i;
-
-	if (mode == 1)
-	{
-		i = 0;
-		str++;
-		while (*str)
-		{
-			if (*str == del && *(str - 1) != del)
-				i++;
-			str++;
-		}
-		if (*str == '\0' && *(str - 1) != del)
-			i++;
-		return (i);
-	}
-	a = 0;
-	while (*str != del && *str != '\0')
-	{
-		a++;
-		str++;
-	}
-	return (a);
-}
-
-static char	*ft_strdup_split(char *arr, char *s, char c, int *k)
-{
-	int		i;
-	int		len;
-
-	len = ft_str_len_count(&s[*k], c, 2);
-	if (len > 0)
-	{
-		arr = malloc(sizeof(char) * (len + 1));
-		if (!arr)
-			return (s);
-	}
-	i = 0;
-	while (s[*k] != c && s[*k] != '\0')
-	{
-		arr[i++] = s[*k];
-		*k += 1;
-	}
-	if (i == 0)
-		arr = NULL;
-	else
-		arr[i] = '\0';
-	return (arr);
-}
-
-static int	ft_core(char **arr, int count, char *s, char c)
-{
-	int		i;
-	int		k;
-
-	k = 0;
-	i = 0;
-	while (count > 0)
-	{
-		if (s[k] == c && c != '\0')
-			k++;
-		else
-		{
-			arr[i] = ft_strdup_split(arr[i], (char *)s, c, &k);
-			if (arr[i] == s)
-			{
-				arr[i] = NULL;
-				return (10);
-			}
-			i++;
-			count--;
-		}
-	}
-	if (count == 0)
-		arr[i] = NULL;
-	return (count);
-}
-
-char	**ft_split(char const *s, char c)
-{
-	size_t	count;
-	char	**arr;
-
-	if (*s == '\0')
-		count = 0;
-	else
-		count = ft_str_len_count((char *)s, c, 1);
-	arr = malloc(sizeof(char *) * (count + 1));
-	if (!arr)
-	{
-		free((void *) arr);
-		return (NULL);
-	}
-	if (ft_core(arr, count, (char *)s, c) > 0)
-	{
-		ft_free(arr);
-		return (NULL);
-	}
-	return (arr);
-}
-
-char	*ft_strdup(char *src)
-{
-	char	*str;
-	char	*ret;
-	int		len;
-
-	len = 0;
-	str = src;
-	len = ft_strlen(str);
-	str = malloc(sizeof (char) * len + 1);
-	if (!str)
-		return (NULL);
-	ret = str;
-	while (*src)
-		*str++ = *src++;
-	*str = '\0';
-	return (ret);
-}
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
@@ -179,49 +39,54 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (&res[-len]);
 }
 
-char	*ft_strchr(const char *s, int c)
+size_t	ft_strlen_gnl(const char *str, int mode)
 {
-	int	i;
+	size_t	a;
 
-	i = 0;
-	while (s[i])
+	a = 0;
+	if (mode == 1)
 	{
-		if (s[i] == (char)c)
-			return ((char *)&s[i]);
-		i++;
+		while (*str)
+		{
+			a++;
+			str++;
+		}
+		return (a);
 	}
-	if ((char)c == 0)
-		return ((char *)&s[i]);
-	return (NULL);
-}
-
-char	*ft_substr(char const *s, unsigned int start, size_t len)
-{
-	char	*sub;
-	int		i;
-	size_t	act_l;
-	size_t	s_len;
-
-	i = 0;
-	s_len = ft_strlen(s);
-	if (s_len < start)
-		sub = malloc(sizeof(char));
 	else
 	{
-		act_l = ft_strlen(&s[start]);
-		if (s_len >= start && act_l < len)
-			sub = malloc(sizeof(char) * (act_l + 1));
+		while (*str != '\n' && *str != '\0')
+		{
+				a++;
+				str++;
+		}
+		if (*str == '\n')
+			return (-a);
 		else
-			sub = malloc(sizeof(char) * (len + 1));
-		if (!sub)
-			return (NULL);
-		while (act_l-- > 0 && len-- > 0)
-			sub[i++] = s[start++];
+			return (a);
 	}
-	if (!sub)
+
+}
+
+char	*ft_strdup_gnl(char *src, int mode)
+{
+	char	*str;
+	char	*ret;
+	int		len;
+	int		i;
+
+	len = 0;
+	i = 0;
+	str = src;
+	len = ft_strlen_gnl(str, mode);
+	str = malloc(sizeof (char) * len + 1);
+	if (!str)
 		return (NULL);
-	sub[i] = '\0';
-	return (sub);
+	ret = str;
+	while (i <= len)
+		str[i] = src[i++];
+	str[i] = '\0';
+	return (ret);
 }
 
 int ft_read_join(char **stbuff, int fd)
@@ -242,10 +107,12 @@ int ft_read_join(char **stbuff, int fd)
 		stbuff[fd] = ft_strjoin(stbuff[fd], buffer);
 		free(tmp);
 		if (bytes_read < BUFFER_SIZE)
-			return (2);
-		else
 			return (1);
+		else
+			return (2);
 }
+
+int ft_split_nl()
 
 char	*get_next_line(int fd)
 {
@@ -253,38 +120,45 @@ char	*get_next_line(int fd)
 	char		*delloc;
 	char		**rsplit;
 	char		*ret;
+	int			res_read;
 
 	if (fd == -1)
-		//TODO Free everything
+		ft_free(**stbuff);
 	if (stbuff == NULL)
 		stbuff[1048576] = malloc(sizeof(char)); //TODO to free
 	while (ret == NULL)
 	{
-		if (stbuff[fd] != NULL)
+		rsplit = ft_split_nl(stbuff[fd], '\n'); //TODO split once
+		if (!rsplit)
 		{
-			rsplit = ft_split_once(stbuff[fd], '\n'); //TODO split once
-			if (!rsplit)
-			{
-				//TODO Free everything;
-				//TODO print error;
-			}
-			else if (rsplit[1] == NULL)
-				ft_read_join(stbuff, fd);
-				//TODO handle return values right
-			else
-			{
-				stbuff[fd] = rsplit[1];
-				ret = rsplit[0];
-				free(rsplit);
-				return (ret);
-				//TODO still stuff to free?
-			}
+			ft_free(**stbuff);
+			write(1, "Error 1: ft_split_once failed!\n", 31); //TODO Remove (not allowed)
+			return (NULL);
 		}
+		else if (rsplit[1] == NULL)
+			res_read = ft_read_join(stbuff, fd);
+			if (res_read <= 1)
+			{
+				write(1, "Error 2: read failed, nothing more to read or EOF!\n", 22); //TODO Remove (not allowed)
+				if (stbuff[fd] != NULL)
+				{
+					ret = stbuff[fd];
+					stbuff[fd] == NULL;
+					return (ret);
+				}
+				else
+					return (NULL);
+			}
 		else
-			ft_read_join(stbuff, fd);
-			//TODO handle return values right
+		{
+			stbuff[fd] = rsplit[1];
+			ret = rsplit[0];
+			free(rsplit);
+			return (ret);
+			//TODO still stuff to free?
+		}
 	}
-	free(stbuff[1048576]);
+	//free(stbuff[1048576]);
 	//TODO free everything;
 	return (ret);
 }
