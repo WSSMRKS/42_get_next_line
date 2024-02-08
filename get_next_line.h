@@ -6,7 +6,7 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 19:32:04 by maweiss           #+#    #+#             */
-/*   Updated: 2024/02/07 13:27:30 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/02/08 12:07:41 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 # include <limits.h>
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 128
+
 # endif
+
+char	*get_next_line(int fd);
 
 #endif

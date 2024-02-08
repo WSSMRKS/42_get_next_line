@@ -6,13 +6,29 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 19:31:20 by maweiss           #+#    #+#             */
-/*   Updated: 2024/02/08 11:12:15 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/02/08 13:17:40 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // Implement a get next line function:
 
 #include "get_next_line.h"
+
+static void	ft_free(char **tofree)
+{
+	int	i;
+
+	if (!tofree)
+		return ;
+	i = 0;
+	while (tofree[i])
+	{
+		free((void *)tofree[i]);
+		i++;
+	}
+	free((void *)tofree);
+	return ;
+}
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
@@ -39,12 +55,12 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (&res[-len]);
 }
 
-size_t	ft_strlen_gnl(const char *str, int mode)
+size_t	ft_strlen_gnl(const char *str, char *sign, char mode)
 {
 	size_t	a;
 
 	a = 0;
-	if (mode == 1)
+	if (mode == '0')
 	{
 		while (*str)
 		{
@@ -57,18 +73,18 @@ size_t	ft_strlen_gnl(const char *str, int mode)
 	{
 		while (*str != '\n' && *str != '\0')
 		{
-				a++;
-				str++;
+			a++;
+			str++;
 		}
 		if (*str == '\n')
-			return (-a);
+			*sign = 'n';
 		else
-			return (a);
+			*sign = '0';
+		return (a);
 	}
-
 }
 
-char	*ft_strdup_gnl(char *src, int mode)
+char	*ft_strdup_gnl(char *src, char mode)
 {
 	char	*str;
 	char	*ret;
@@ -78,22 +94,24 @@ char	*ft_strdup_gnl(char *src, int mode)
 	len = 0;
 	i = 0;
 	str = src;
-	len = ft_strlen_gnl(str, mode);
+	len = ft_strlen_gnl(str, &mode, mode);
 	str = malloc(sizeof (char) * len + 1);
 	if (!str)
 		return (NULL);
 	ret = str;
 	while (i <= len)
-		str[i] = src[i++];
+	{
+		str[i] = src[i];
+		i++;
+	}
 	str[i] = '\0';
 	return (ret);
 }
 
-int ft_read_join(char **stbuff, int fd)
+int	ft_read_join(char **stbuff, int fd)
 {
 	int		bytes_read;
 	char	buffer[BUFFER_SIZE + 1];
-	char	res;
 	char	*tmp;
 
 	bytes_read = read(fd, buffer, BUFFER_SIZE);
@@ -103,6 +121,7 @@ int ft_read_join(char **stbuff, int fd)
 	else if (bytes_read < BUFFER_SIZE && bytes_read == 0)
 		return (0);
 	else
+	{
 		tmp = stbuff[fd];
 		stbuff[fd] = ft_strjoin(stbuff[fd], buffer);
 		free(tmp);
@@ -110,32 +129,51 @@ int ft_read_join(char **stbuff, int fd)
 			return (1);
 		else
 			return (2);
+	}
 }
 
-int ft_split_nl()
+char	**ft_split_nl(char *find_nl)
+{
+	int		res;
+	char	sign;
+	char	**ret;
+
+	sign = 0;
+	ret = malloc(sizeof(char *) * 2);
+	if (!ret)
+		return (NULL);
+	res = ft_strlen_gnl(find_nl, &sign, '2');
+	if (sign == 'n')
+	{
+		ret[0] = ft_strdup_gnl(find_nl, 'n');
+		ret[1] = ft_strdup_gnl(find_nl, '0');
+	}
+	if (sign == '0')
+		ret[0] = ft_strdup_gnl(find_nl, '0');
+	return (ret);
+}
 
 char	*get_next_line(int fd)
 {
 	static char	*stbuff[1048576 + 1];
-	char		*delloc;
 	char		**rsplit;
 	char		*ret;
 	int			res_read;
 
 	if (fd == -1)
-		ft_free(**stbuff);
-	if (stbuff == NULL)
-		stbuff[1048576] = malloc(sizeof(char)); //TODO to free
+		ft_free(stbuff);
+	ret = NULL;
 	while (ret == NULL)
 	{
-		rsplit = ft_split_nl(stbuff[fd], '\n'); //TODO split once
+		rsplit = ft_split_nl(stbuff[fd]);
 		if (!rsplit)
 		{
-			ft_free(**stbuff);
-			write(1, "Error 1: ft_split_once failed!\n", 31); //TODO Remove (not allowed)
+			ft_free(stbuff);
+			write(1, "Error 1: ft_split_nl failed!\n", 31); //TODO Remove (not allowed)
 			return (NULL);
 		}
 		else if (rsplit[1] == NULL)
+		{
 			res_read = ft_read_join(stbuff, fd);
 			if (res_read <= 1)
 			{
@@ -143,12 +181,13 @@ char	*get_next_line(int fd)
 				if (stbuff[fd] != NULL)
 				{
 					ret = stbuff[fd];
-					stbuff[fd] == NULL;
-					return (ret);
+					stbuff[fd] = NULL;
+					return (ret); //TODO free regimen of other FDs
 				}
 				else
 					return (NULL);
 			}
+		}
 		else
 		{
 			stbuff[fd] = rsplit[1];
@@ -162,5 +201,3 @@ char	*get_next_line(int fd)
 	//TODO free everything;
 	return (ret);
 }
-
-//TODO Try to replace ft_split_once by ft_strchr & ft_substr & ft_strdup??
