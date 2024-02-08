@@ -6,7 +6,7 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 19:31:20 by maweiss           #+#    #+#             */
-/*   Updated: 2024/02/08 13:17:40 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/02/08 15:11:49 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,7 +169,7 @@ char	*get_next_line(int fd)
 		if (!rsplit)
 		{
 			ft_free(stbuff);
-			write(1, "Error 1: ft_split_nl failed!\n", 31); //TODO Remove (not allowed)
+			write(1, "Error 1: ft_split_nl failed!\n", 29); //TODO Remove (not allowed)
 			return (NULL);
 		}
 		else if (rsplit[1] == NULL)
