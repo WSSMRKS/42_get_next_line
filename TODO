@@ -1,3 +1,4 @@
-# TODO Make ft_strlen_gnl handle NULL !!
-# TODO Make ft_strdup in libft handle NULL !!
-# TODO Make ft_strlen in libft handle NULL !!
+# [ ] Make ft_strlen_gnl handle NULL !!
+# [ ] Make ft_strdup in libft handle NULL !!
+# [ ] Make ft_strlen in libft handle NULL !!
+# [x] Create split_nl out of ft_strdup and special ft_strlen done

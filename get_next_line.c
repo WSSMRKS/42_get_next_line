@@ -6,7 +6,7 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 19:31:20 by maweiss           #+#    #+#             */
-/*   Updated: 2024/02/09 12:46:40 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/02/09 14:12:28 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,22 @@ int	ft_read_join(char **stbuff, int fd)
 	}
 }
 
+char	*ft_strchr(const char *s, int c)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == (char)c)
+			return ((char *)&s[i]);
+		i++;
+	}
+	if ((char)c == 0)
+		return ((char *)&s[i]);
+	return (NULL);
+}
+
 char	**ft_split_nl(char *find_nl)
 {
 	char	sign;
@@ -149,7 +165,7 @@ char	**ft_split_nl(char *find_nl)
 	if (sign == 'n')
 	{
 		ret[0] = ft_strdup_gnl(find_nl, 'n');
-		ret[1] = ft_strdup_gnl(find_nl, '0');
+		ret[1] = ft_strdup_gnl(find_nl + ft_strlen_gnl(find_nl, &sign, '1') + 1, '0');
 	}
 	if (sign == '0')
 	{
@@ -169,6 +185,7 @@ char *get_next_line(int fd)
 	char		**rsplit;
 	char		*ret;
 	int			res_read;
+	char		sign_rest;
 
 	if (fd == -1)
 		ft_free(stbuff);
@@ -179,7 +196,7 @@ char *get_next_line(int fd)
 		if (!rsplit)
 		{
 			ft_free(stbuff);
-			write(1, "Error 1: ft_split_nl failed!\n", 29); // TODO Remove (not allowed)
+			write(1, "Error 1: ft_split_nl failed!\n", 29); // [ ] Remove (not allowed)
 			return (NULL);
 		}
 		else if (rsplit[1] == NULL)
@@ -191,12 +208,15 @@ char *get_next_line(int fd)
 			res_read = ft_read_join(stbuff, fd);
 			if (res_read <= 1)
 			{
-				write(1, "Error 2: read failed, nothing more to read or EOF!\n", 22); // TODO Remove (not allowed)
 				if (stbuff[fd] != NULL)
 				{
-					ret = stbuff[fd];
-					stbuff[fd] = NULL;
-					return (ret); // TODO free regimen of other FDs
+					ft_strlen_gnl(stbuff[fd], &sign_rest, '2');
+					if (sign_rest != 'n')
+					{
+						ret = stbuff[fd];
+						stbuff[fd] = NULL;
+						return (ret); // [ ] free regimen of other FDs
+					}
 				}
 				else
 					return (NULL);
@@ -208,10 +228,10 @@ char *get_next_line(int fd)
 			ret = rsplit[0];
 			free(rsplit);
 			return (ret);
-			// TODO still stuff to free?
+			// [ ] still stuff to free?
 		}
 	}
 	// free(stbuff[1048576]);
-	// TODO free everything;
+	// [ ] free everything;
 	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:06:25 by maweiss           #+#    #+#             */
-/*   Updated: 2024/02/09 11:15:48 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/02/09 13:54:09 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	single_file(void)
 		{
 			line = get_next_line(read);
 			printf("%s", line);
-			log = open("logfile.txt", O_CREAT, O_WRONLY);
+			log = open("logfile.txt", O_WRONLY | O_CREAT, 0666, O_TRUNC);
 			write(log, line, ft_strlen(line));
 			if (!line)
 				done = 1;
@@ -178,4 +178,4 @@ int	main(void)
 	}
 }
 
-// TODO read from stdin
+// [ ] read from stdin

@@ -106,4 +106,4 @@ help:
 # End comments on how to compile ft_printf with a new project:
 # prerequisites: libftprintf.a ft_printf.h
 
-# TODO remove Makefile before submission
+# [ ] remove Makefile before submission
