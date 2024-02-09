@@ -6,7 +6,7 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 19:31:20 by maweiss           #+#    #+#             */
-/*   Updated: 2024/02/09 14:12:28 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/02/09 15:47:29 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #include "get_next_line.h"
 
-static void	ft_free(char **tofree)
+void	ft_free(char **tofree)
 {
 	int	i;
 
@@ -165,7 +165,7 @@ char	**ft_split_nl(char *find_nl)
 	if (sign == 'n')
 	{
 		ret[0] = ft_strdup_gnl(find_nl, 'n');
-		ret[1] = ft_strdup_gnl(find_nl + ft_strlen_gnl(find_nl, &sign, '1') + 1, '0');
+		ret[1] = ft_strdup_gnl(find_nl + ft_strlen_gnl(find_nl, &sign, '1') + 1, '0'); //[ ] Fehler ret value und position des splits passen nicht.!!!!
 	}
 	if (sign == '0')
 	{
@@ -208,18 +208,15 @@ char *get_next_line(int fd)
 			res_read = ft_read_join(stbuff, fd);
 			if (res_read <= 1)
 			{
-				if (stbuff[fd] != NULL)
-				{
-					ft_strlen_gnl(stbuff[fd], &sign_rest, '2');
-					if (sign_rest != 'n')
-					{
-						ret = stbuff[fd];
-						stbuff[fd] = NULL;
-						return (ret); // [ ] free regimen of other FDs
-					}
-				}
-				else
+				if (res_read < 1)
 					return (NULL);
+				ft_strlen_gnl(stbuff[fd], &sign_rest, '2');
+				if (sign_rest != 'n')
+				{
+					ret = stbuff[fd];
+					stbuff[fd] = NULL;
+					return (ret); // [ ] free regimen of other FDs
+				}
 			}
 		}
 		else

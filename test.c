@@ -6,7 +6,7 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:06:25 by maweiss           #+#    #+#             */
-/*   Updated: 2024/02/09 13:54:09 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/02/09 15:32:01 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	single_file(void)
 
 	done = 0;
 	read = open("example.txt", O_RDONLY);
+	log = open("logfile.txt", O_RDWR | O_CREAT, 0666, O_TRUNC);
 	if (read == -1)
 	{
 		printf("Error 1: Error while opening file\n");
@@ -35,11 +36,13 @@ int	single_file(void)
 		while (done != 1)
 		{
 			line = get_next_line(read);
-			printf("%s", line);
-			log = open("logfile.txt", O_WRONLY | O_CREAT, 0666, O_TRUNC);
-			write(log, line, ft_strlen(line));
 			if (!line)
 				done = 1;
+			else
+			{
+				printf("%s", line);
+				write(log, line, ft_strlen(line));
+			}
 		}
 		if (-1 == close(read))
 			printf("Error 2: closing read file error!\n");
@@ -76,7 +79,7 @@ int	multiple_files(void)
 
 	read = open("example.txt", O_RDONLY);
 	read2 = open("example2.txt", O_RDONLY);
-	log = open("logfile.txt", O_CREAT, O_WRONLY);
+	log = open("logfile.txt", O_WRONLY | O_CREAT, 0666, O_TRUNC);
 	if (read == -1 || read2 == -1 || log == -1)
 	{
 		if (read == -1)
@@ -102,6 +105,8 @@ int	multiple_files(void)
 					else
 						sw = 4;
 				}
+				else if (sw == 1)
+					sw = 2;
 			}
 			else
 			{
@@ -113,15 +118,19 @@ int	multiple_files(void)
 					else
 						sw = 3;
 				}
+				else if (sw == 2)
+					sw = 1;
 			}
-			printf("%s", line);
-			if (!write(log, line, ft_strlen(line)))
+			if (line)
 			{
-				printf("Error 3: Error while writing to log.txt!\n");
-				get_next_line(-1);
-				return (0);
+				printf("%s", line);
+				if (!write(log, line, ft_strlen_gnl(line, line, '2') + 1))
+				{
+					printf("Error 3: Error while writing to log.txt!\n");
+					get_next_line(-1);
+					return (0);
+				}
 			}
-			return (1);
 		}
 		if (-1 == close(read))
 			printf("Error 3: closing read file error!\n");
@@ -129,6 +138,7 @@ int	multiple_files(void)
 			printf("Error 4: closing read2 file error!\n");
 		if (-1 == close(log))
 			printf("Error 5: closing log file error!\n");
+		return (1);
 	}
 	return (0);
 }

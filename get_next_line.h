@@ -6,7 +6,7 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 19:32:04 by maweiss           #+#    #+#             */
-/*   Updated: 2024/02/08 12:07:41 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/02/09 14:50:30 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,7 @@
 # endif
 
 char	*get_next_line(int fd);
+void	ft_free(char **tofree);
+size_t	ft_strlen_gnl(const char *str, char *sign, char mode);
 
 #endif
