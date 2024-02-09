@@ -6,7 +6,7 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:06:25 by maweiss           #+#    #+#             */
-/*   Updated: 2024/02/09 15:32:01 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/02/09 20:24:02 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "libft/libft.h"
 #include <dirent.h>
 
-int	single_file(void)
+int	single_file(char *file_name)
 {
 	int		read;
 	int		log;
@@ -24,7 +24,7 @@ int	single_file(void)
 	int		done;
 
 	done = 0;
-	read = open("example.txt", O_RDONLY);
+	read = open(file_name, O_RDONLY);
 	log = open("logfile.txt", O_RDWR | O_CREAT, 0666, O_TRUNC);
 	if (read == -1)
 	{
@@ -76,6 +76,7 @@ int	multiple_files(void)
 	int				log;
 	unsigned int	sw;
 	char			*line;
+	char			place;
 
 	read = open("example.txt", O_RDONLY);
 	read2 = open("example2.txt", O_RDONLY);
@@ -124,7 +125,7 @@ int	multiple_files(void)
 			if (line)
 			{
 				printf("%s", line);
-				if (!write(log, line, ft_strlen_gnl(line, line, '2') + 1))
+				if (!write(log, line, ft_strlen_gnl(line, &place, '2') + 1))
 				{
 					printf("Error 3: Error while writing to log.txt!\n");
 					get_next_line(-1);
@@ -156,8 +157,9 @@ int	main(void)
 	{
 		printf("which test do you want to execute?\n");
 		printf("1: read a single line\n");
-		printf("2: read a single file\n");
-		printf("3: read from multiple files\n");
+		printf("2: read a single file! example.txt\n");
+		printf("3: read a single file! example2.txt\n");
+		printf("4: read from multiple files\n");
 		printf("0: exit program\n");
 		ret_read = read(0, &choose, 1);
 		printf("This is the return value of read: %d\n", ret_read);
@@ -169,9 +171,11 @@ int	main(void)
 		printf("This is the state of the Variable choose: %c\n", choose);
 		if (choose == '1' && single_line() == 1)
 			printf("single line successfully tested\n");
-		else if (choose == '2' && single_file() == 1)
+		else if (choose == '2' && single_file("example.txt") == 1)
 			printf("single file successfully tested\n");
-		else if (choose == '3' && multiple_files() == 1)
+		else if (choose == '3' && single_file("example2.txt") == 1)
+			printf("single file successfully tested\n");
+		else if (choose == '4' && multiple_files() == 1)
 			printf("multiple files successfully tested\n");
 		else if (choose == '0' && multiple_files() == 1)
 		{

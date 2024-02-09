@@ -6,7 +6,7 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 19:31:20 by maweiss           #+#    #+#             */
-/*   Updated: 2024/02/09 15:47:29 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/02/09 21:15:01 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 #include "get_next_line.h"
 
-void	ft_free(char **tofree)
+void ft_free(char **tofree)
 {
-	int	i;
+	int i;
 
 	if (!tofree)
-		return ;
+		return;
 	i = 0;
 	while (tofree[i])
 	{
@@ -27,15 +27,15 @@ void	ft_free(char **tofree)
 		i++;
 	}
 	free((void *)tofree);
-	return ;
+	return;
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char *ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	len;
-	char	*res;
-	char	*tmp1;
-	char	*tmp2;
+	size_t len;
+	char *res;
+	char *tmp1;
+	char *tmp2;
 
 	len = 0;
 	tmp1 = (char *)s1;
@@ -55,9 +55,9 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (&res[-len]);
 }
 
-size_t	ft_strlen_gnl(const char *str, char *sign, char mode)
+size_t ft_strlen_gnl(const char *str, char *sign, char mode)
 {
-	size_t	a;
+	size_t a;
 
 	a = 0;
 	if (!str)
@@ -83,12 +83,11 @@ size_t	ft_strlen_gnl(const char *str, char *sign, char mode)
 	}
 }
 
-char	*ft_strdup_gnl(char *src, char mode)
+char *ft_strdup_gnl(char *src, char mode)
 {
-	char	*str;
-	char	*ret;
-	int		len;
-	int		i;
+	char *str;
+	int len;
+	int i;
 
 	len = 0;
 	i = 0;
@@ -100,21 +99,20 @@ char	*ft_strdup_gnl(char *src, char mode)
 		return (NULL);
 	if (len == 0)
 		str[0] = '\0';
-	ret = str;
 	while (i <= len)
 	{
 		str[i] = src[i];
 		i++;
 	}
 	str[i] = '\0';
-	return (ret);
+	return (str);
 }
 
-int	ft_read_join(char **stbuff, int fd)
+int ft_read_join(char **stbuff, int fd)
 {
-	int		bytes_read;
-	char	buffer[BUFFER_SIZE + 1];
-	char	*tmp;
+	int bytes_read;
+	char buffer[BUFFER_SIZE + 1];
+	char *tmp;
 
 	bytes_read = read(fd, buffer, BUFFER_SIZE);
 	buffer[bytes_read] = 0;
@@ -134,9 +132,9 @@ int	ft_read_join(char **stbuff, int fd)
 	}
 }
 
-char	*ft_strchr(const char *s, int c)
+char *ft_strchr(const char *s, int c)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	while (s[i])
@@ -150,10 +148,10 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-char	**ft_split_nl(char *find_nl)
+char **ft_split_nl(char *find_nl)
 {
-	char	sign;
-	char	**ret;
+	char sign;
+	char **ret;
 
 	sign = 0;
 	ret = malloc(sizeof(char *) * 2);
@@ -164,8 +162,11 @@ char	**ft_split_nl(char *find_nl)
 	ft_strlen_gnl(find_nl, &sign, '2');
 	if (sign == 'n')
 	{
-		ret[0] = ft_strdup_gnl(find_nl, 'n');
-		ret[1] = ft_strdup_gnl(find_nl + ft_strlen_gnl(find_nl, &sign, '1') + 1, '0'); //[ ] Fehler ret value und position des splits passen nicht.!!!!
+		ret[0] = ft_strdup_gnl(find_nl, '\n');
+		printf("I am gonna be returned: \"%s\"\n", ret[0]);
+		ret[1] = ft_strdup_gnl(find_nl + ft_strlen_gnl(find_nl, &sign, '\n') + 1, '0'); //[ ] Fehler ret value und position des splits passen nicht.!!!!
+		printf("I am gonna be returned: \"%s\"\n", ret[0]);
+		printf("I go to Buffer: \"%s\"\n", ret[1]);
 	}
 	if (sign == '0')
 	{
@@ -181,11 +182,11 @@ char	**ft_split_nl(char *find_nl)
 
 char *get_next_line(int fd)
 {
-	static char	*stbuff[1048576 + 1];
-	char		**rsplit;
-	char		*ret;
-	int			res_read;
-	char		sign_rest;
+	static char *stbuff[1048576 + 1];
+	char **rsplit;
+	char *ret;
+	int res_read;
+	char sign_rest;
 
 	if (fd == -1)
 		ft_free(stbuff);
@@ -210,7 +211,7 @@ char *get_next_line(int fd)
 			{
 				if (res_read < 1)
 					return (NULL);
-				ft_strlen_gnl(stbuff[fd], &sign_rest, '2');
+				ft_strlen_gnl(stbuff[fd], &sign_rest, '\n');
 				if (sign_rest != 'n')
 				{
 					ret = stbuff[fd];
