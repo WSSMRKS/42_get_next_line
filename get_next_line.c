@@ -6,7 +6,7 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 19:31:20 by maweiss           #+#    #+#             */
-/*   Updated: 2024/02/08 15:11:49 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/02/09 12:46:40 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,22 +60,21 @@ size_t	ft_strlen_gnl(const char *str, char *sign, char mode)
 	size_t	a;
 
 	a = 0;
+	if (!str)
+	{
+		*sign = '0';
+		return (a);
+	}
 	if (mode == '0')
 	{
-		while (*str)
-		{
+		while (*str++)
 			a++;
-			str++;
-		}
 		return (a);
 	}
 	else
 	{
-		while (*str != '\n' && *str != '\0')
-		{
+		while (*str != '\n' && *str++ != '\0')
 			a++;
-			str++;
-		}
 		if (*str == '\n')
 			*sign = 'n';
 		else
@@ -93,11 +92,14 @@ char	*ft_strdup_gnl(char *src, char mode)
 
 	len = 0;
 	i = 0;
-	str = src;
-	len = ft_strlen_gnl(str, &mode, mode);
-	str = malloc(sizeof (char) * len + 1);
+	if (!src)
+		return (NULL);
+	len = ft_strlen_gnl(src, &mode, mode);
+	str = malloc(sizeof(char) * len + 1);
 	if (!str)
 		return (NULL);
+	if (len == 0)
+		str[0] = '\0';
 	ret = str;
 	while (i <= len)
 	{
@@ -134,7 +136,6 @@ int	ft_read_join(char **stbuff, int fd)
 
 char	**ft_split_nl(char *find_nl)
 {
-	int		res;
 	char	sign;
 	char	**ret;
 
@@ -142,18 +143,27 @@ char	**ft_split_nl(char *find_nl)
 	ret = malloc(sizeof(char *) * 2);
 	if (!ret)
 		return (NULL);
-	res = ft_strlen_gnl(find_nl, &sign, '2');
+	ret[0] = NULL;
+	ret[1] = NULL;
+	ft_strlen_gnl(find_nl, &sign, '2');
 	if (sign == 'n')
 	{
 		ret[0] = ft_strdup_gnl(find_nl, 'n');
 		ret[1] = ft_strdup_gnl(find_nl, '0');
 	}
 	if (sign == '0')
+	{
 		ret[0] = ft_strdup_gnl(find_nl, '0');
+		if (ret[0] == NULL)
+		{
+			ret[0] = malloc(sizeof(char));
+			ret[0][0] = '\0';
+		}
+	}
 	return (ret);
 }
 
-char	*get_next_line(int fd)
+char *get_next_line(int fd)
 {
 	static char	*stbuff[1048576 + 1];
 	char		**rsplit;
@@ -169,20 +179,24 @@ char	*get_next_line(int fd)
 		if (!rsplit)
 		{
 			ft_free(stbuff);
-			write(1, "Error 1: ft_split_nl failed!\n", 29); //TODO Remove (not allowed)
+			write(1, "Error 1: ft_split_nl failed!\n", 29); // TODO Remove (not allowed)
 			return (NULL);
 		}
 		else if (rsplit[1] == NULL)
 		{
+			free(rsplit[1]);
+			stbuff[fd] = rsplit[0];
+			rsplit[0] = NULL;
+			free(rsplit);
 			res_read = ft_read_join(stbuff, fd);
 			if (res_read <= 1)
 			{
-				write(1, "Error 2: read failed, nothing more to read or EOF!\n", 22); //TODO Remove (not allowed)
+				write(1, "Error 2: read failed, nothing more to read or EOF!\n", 22); // TODO Remove (not allowed)
 				if (stbuff[fd] != NULL)
 				{
 					ret = stbuff[fd];
 					stbuff[fd] = NULL;
-					return (ret); //TODO free regimen of other FDs
+					return (ret); // TODO free regimen of other FDs
 				}
 				else
 					return (NULL);
@@ -194,10 +208,10 @@ char	*get_next_line(int fd)
 			ret = rsplit[0];
 			free(rsplit);
 			return (ret);
-			//TODO still stuff to free?
+			// TODO still stuff to free?
 		}
 	}
-	//free(stbuff[1048576]);
-	//TODO free everything;
+	// free(stbuff[1048576]);
+	// TODO free everything;
 	return (ret);
 }

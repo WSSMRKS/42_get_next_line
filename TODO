@@ -1,1 +1,3 @@
-# TODO Make ft_strlen_gnl handle NULL!!
+# TODO Make ft_strlen_gnl handle NULL !!
+# TODO Make ft_strdup in libft handle NULL !!
+# TODO Make ft_strlen in libft handle NULL !!

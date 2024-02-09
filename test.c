@@ -6,7 +6,7 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:06:25 by maweiss           #+#    #+#             */
-/*   Updated: 2024/02/08 13:12:16 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/02/09 11:15:48 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,7 @@ int	main(void)
 
 	setbuf(stdout, NULL);
 	success = 0;
+	ret_read = 0;
 	while (success != 1)
 	{
 		printf("which test do you want to execute?\n");
