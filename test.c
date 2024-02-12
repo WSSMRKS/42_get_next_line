@@ -6,7 +6,7 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:06:25 by maweiss           #+#    #+#             */
-/*   Updated: 2024/02/09 20:24:02 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/02/12 23:54:02 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ int	multiple_files(void)
 			if (line)
 			{
 				printf("%s", line);
-				if (!write(log, line, ft_strlen_gnl(line, &place, '2') + 1))
+				if (!write(log, line, ft_strlen_gnl(line, &place, '2')))
 				{
 					printf("Error 3: Error while writing to log.txt!\n");
 					get_next_line(-1);
@@ -160,6 +160,7 @@ int	main(void)
 		printf("2: read a single file! example.txt\n");
 		printf("3: read a single file! example2.txt\n");
 		printf("4: read from multiple files\n");
+		printf("5: free everything!\n");
 		printf("0: exit program\n");
 		ret_read = read(0, &choose, 1);
 		printf("This is the return value of read: %d\n", ret_read);
@@ -177,7 +178,7 @@ int	main(void)
 			printf("single file successfully tested\n");
 		else if (choose == '4' && multiple_files() == 1)
 			printf("multiple files successfully tested\n");
-		else if (choose == '0' && multiple_files() == 1)
+		else if (choose == '0')
 		{
 			success = 1;
 			printf("Terminating program\n");

@@ -6,7 +6,7 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 19:31:20 by maweiss           #+#    #+#             */
-/*   Updated: 2024/02/09 21:15:01 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/02/13 00:13:40 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,21 @@
 
 #include "get_next_line.h"
 
-void ft_free(char **tofree)
+void ft_free(char **tofree, int mode)
 {
 	int i;
 
 	if (!tofree)
 		return;
 	i = 0;
-	while (tofree[i])
+	while (i < 1048576 + 1)
 	{
-		free((void *)tofree[i]);
+		if (tofree[i])
+			free((void *)tofree[i]);
 		i++;
 	}
-	free((void *)tofree);
+	if (mode == 1)
+		free((void *)tofree);
 	return;
 }
 
@@ -44,7 +46,7 @@ char *ft_strjoin(char const *s1, char const *s2)
 	tmp2 = (char *)s2;
 	while (*s2++)
 		len++;
-	res = malloc(len + 1);
+	res = malloc(sizeof(char) * (len + 1));
 	if (!res)
 		return (NULL);
 	while (*tmp1)
@@ -73,10 +75,16 @@ size_t ft_strlen_gnl(const char *str, char *sign, char mode)
 	}
 	else
 	{
-		while (*str != '\n' && *str++ != '\0')
+		while (*str != '\n' && *str != '\0')
+		{
+			str++;
 			a++;
+		}
 		if (*str == '\n')
+		{
 			*sign = 'n';
+			a++;
+		}
 		else
 			*sign = '0';
 		return (a);
@@ -94,12 +102,12 @@ char *ft_strdup_gnl(char *src, char mode)
 	if (!src)
 		return (NULL);
 	len = ft_strlen_gnl(src, &mode, mode);
-	str = malloc(sizeof(char) * len + 1);
+	str = malloc(sizeof(char) * (len + 1));
 	if (!str)
 		return (NULL);
 	if (len == 0)
 		str[0] = '\0';
-	while (i <= len)
+	while (i < len)
 	{
 		str[i] = src[i];
 		i++;
@@ -164,7 +172,7 @@ char **ft_split_nl(char *find_nl)
 	{
 		ret[0] = ft_strdup_gnl(find_nl, '\n');
 		printf("I am gonna be returned: \"%s\"\n", ret[0]);
-		ret[1] = ft_strdup_gnl(find_nl + ft_strlen_gnl(find_nl, &sign, '\n') + 1, '0'); //[ ] Fehler ret value und position des splits passen nicht.!!!!
+		ret[1] = ft_strdup_gnl(find_nl + ft_strlen_gnl(find_nl, &sign, '\n'), '0'); //[ ] Fehler ret value und position des splits passen nicht.!!!!
 		printf("I am gonna be returned: \"%s\"\n", ret[0]);
 		printf("I go to Buffer: \"%s\"\n", ret[1]);
 	}
@@ -189,14 +197,14 @@ char *get_next_line(int fd)
 	char sign_rest;
 
 	if (fd == -1)
-		ft_free(stbuff);
+		ft_free(stbuff, 0);
 	ret = NULL;
 	while (ret == NULL)
 	{
 		rsplit = ft_split_nl(stbuff[fd]);
 		if (!rsplit)
 		{
-			ft_free(stbuff);
+			ft_free(stbuff, 0);
 			write(1, "Error 1: ft_split_nl failed!\n", 29); // [ ] Remove (not allowed)
 			return (NULL);
 		}
@@ -210,7 +218,10 @@ char *get_next_line(int fd)
 			if (res_read <= 1)
 			{
 				if (res_read < 1)
+				{
+					ft_free(stbuff, 0);
 					return (NULL);
+				}
 				ft_strlen_gnl(stbuff[fd], &sign_rest, '\n');
 				if (sign_rest != 'n')
 				{
