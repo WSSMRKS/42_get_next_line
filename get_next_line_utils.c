@@ -6,7 +6,7 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 19:31:20 by maweiss           #+#    #+#             */
-/*   Updated: 2024/02/13 18:05:14 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/02/13 19:12:24 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,34 +57,18 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 size_t	ft_strlen_gnl(const char *str, char *sign, char mode)
 {
-	size_t	a;
+	size_t	i;
 
-	a = 0;
+	i = 0;
+	*sign = '0';
 	if (!str)
+		return (i);
+	while (mode == '0' && str[i])
+		i++;
+	while (mode != '0' && str[i] != '\0')
 	{
-		*sign = '0';
-		return (a);
-	}
-	if (mode == '0')
-	{
-		while (*str++)
-			a++;
-		return (a);
-	}
-	else
-	{
-		while (*str != '\n' && *str != '\0')
-		{
-			str++;
-			a++;
-		}
-		if (*str == '\n')
-		{
+		if (str[i++] == '\n')
 			*sign = 'n';
-			a++;
-		}
-		else
-			*sign = '0';
-		return (a);
 	}
+	return (i);
 }

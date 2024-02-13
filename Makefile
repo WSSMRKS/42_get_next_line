@@ -12,7 +12,7 @@ TESTFLAGS = -g
 COPTIONS = -c
 CC = cc
 # Source Files #
-SRC =  get_next_line.c get_next_line_utils.c
+SRC =  get_next_line.c get_next_line_utils.c libft/ft_strlen.c
 MAIN_SRC =
 TEST_SRC = test.c
 HEADERS = get_next_line.h
@@ -46,8 +46,10 @@ $(NAME):
 #   endif
 
 test: $(NAME)
-	@$(CC) $(TESTFLAGS) $(MAIN_SRC) $(SRC) $(TEST_SRC) -o $(MAIN_NAME)
+	@$(CC) $(CFLAGS) $(MAIN_SRC) $(SRC) $(TEST_SRC) -o $(MAIN_NAME)
 	@echo "test command sucessfully executed. Executable is called \"$(MAIN_NAME)\"!"
+	@./a.out
+	echo 2
 
 # test_strict: $(MAIN_OBJ) $(NAME) $(TEST_OBJ)
 # 	@$(CC) $(CFLAGS) $(MAIN_OBJ) $(SRC_OBJ) $(TEST_OBJ) -o $(MAIN_NAME)
@@ -59,6 +61,9 @@ run: fclean test
 
 debug: fclean test bonus
 	gdb ./a.out
+
+valgrind:
+	@valgrind ./a.out
 
 # Compile .c to .o #
 %.o: %.c
