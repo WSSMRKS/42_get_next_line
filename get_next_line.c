@@ -6,7 +6,7 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 19:31:20 by maweiss           #+#    #+#             */
-/*   Updated: 2024/02/13 17:13:47 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/02/13 18:02:09 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,88 +14,11 @@
 
 #include "get_next_line.h"
 
-void ft_free(char **tofree, int mode)
+char	*ft_strdup_gnl(char *src, char mode)
 {
-	int i;
-
-	if (!tofree)
-		return;
-	i = 0;
-	while (i < 1048576 + 1)
-	{
-		if (tofree[i])
-			free((void *)tofree[i]);
-		i++;
-	}
-	if (mode == 1)
-		free((void *)tofree);
-	return;
-}
-
-char *ft_strjoin(char const *s1, char const *s2)
-{
-	size_t len;
-	char *res;
-	char *tmp1;
-	char *tmp2;
-
-	len = 0;
-	tmp1 = (char *)s1;
-	while (*s1++)
-		len++;
-	tmp2 = (char *)s2;
-	while (*s2++)
-		len++;
-	res = malloc(sizeof(char) * (len + 1));
-	if (!res)
-		return (NULL);
-	while (*tmp1)
-		*res++ = *tmp1++;
-	while (*tmp2)
-		*res++ = *tmp2++;
-	*res = '\0';
-	return (&res[-len]);
-}
-
-size_t ft_strlen_gnl(const char *str, char *sign, char mode)
-{
-	size_t a;
-
-	a = 0;
-	if (!str)
-	{
-		*sign = '0';
-		return (a);
-	}
-	if (mode == '0')
-	{
-		while (*str++)
-			a++;
-		return (a);
-	}
-	else
-	{
-		while (*str != '\n' && *str != '\0')
-		{
-			str++;
-			a++;
-		}
-		if (*str == '\n')
-		{
-			*sign = 'n';
-			a++;
-		}
-		else
-			*sign = '0';
-		return (a);
-	}
-}
-
-char *ft_strdup_gnl(char *src, char mode)
-{
-	char *str;
-	int len;
-	int i;
+	char	*str;
+	int		len;
+	int		i;
 
 	len = 0;
 	i = 0;
@@ -116,11 +39,11 @@ char *ft_strdup_gnl(char *src, char mode)
 	return (str);
 }
 
-int ft_read_join(char **stbuff, int fd)
+int	ft_read_join(char **stbuff, int fd)
 {
-	int bytes_read;
-	char buffer[BUFFER_SIZE + 1];
-	char *tmp;
+	int		bytes_read;
+	char	buffer[BUFFER_SIZE + 1];
+	char	*tmp;
 
 	bytes_read = read(fd, buffer, BUFFER_SIZE);
 	buffer[bytes_read] = 0;
@@ -140,26 +63,10 @@ int ft_read_join(char **stbuff, int fd)
 	}
 }
 
-char *ft_strchr(const char *s, int c)
+char	**ft_split_nl(char *find_nl)
 {
-	int i;
-
-	i = 0;
-	while (s[i])
-	{
-		if (s[i] == (char)c)
-			return ((char *)&s[i]);
-		i++;
-	}
-	if ((char)c == 0)
-		return ((char *)&s[i]);
-	return (NULL);
-}
-
-char **ft_split_nl(char *find_nl)
-{
-	char sign;
-	char **ret;
+	char	sign;
+	char	**ret;
 
 	sign = 0;
 	ret = malloc(sizeof(char *) * 2);
@@ -172,7 +79,8 @@ char **ft_split_nl(char *find_nl)
 	{
 		ret[0] = ft_strdup_gnl(find_nl, '\n');
 		printf("I am gonna be returned: \"%s\"\n", ret[0]);
-		ret[1] = ft_strdup_gnl(find_nl + ft_strlen_gnl(find_nl, &sign, '\n'), '0'); //[ ] Fehler ret value und position des splits passen nicht.!!!!
+		ret[1] = ft_strdup_gnl(find_nl
+				+ ft_strlen_gnl(find_nl, &sign, '\n'), '0');
 		printf("I am gonna be returned: \"%s\"\n", ret[0]);
 		printf("I go to Buffer: \"%s\"\n", ret[1]);
 	}
@@ -188,13 +96,13 @@ char **ft_split_nl(char *find_nl)
 	return (ret);
 }
 
-char *get_next_line(int fd)
+char	*get_next_line(int fd)
 {
-	static char *stbuff[1048576 + 1];
-	char **rsplit;
-	char *ret;
-	int res_read;
-	char sign_rest;
+	static char	*stbuff[1048576 + 1];
+	char		**rsplit;
+	char		*ret;
+	int			res_read;
+	char		sign_rest;
 
 	if (fd == -2)
 		ft_free(stbuff, 0);
@@ -205,7 +113,6 @@ char *get_next_line(int fd)
 		if (!rsplit)
 		{
 			ft_free(stbuff, 0);
-			write(1, "Error 1: ft_split_nl failed!\n", 29); // [ ] Remove (not allowed)
 			return (NULL);
 		}
 		else if (rsplit[1] == NULL)
@@ -226,7 +133,7 @@ char *get_next_line(int fd)
 				{
 					ret = stbuff[fd];
 					stbuff[fd] = NULL;
-					return (ret); // [ ] free regimen of other FDs
+					return (ret);
 				}
 			}
 		}
@@ -236,10 +143,7 @@ char *get_next_line(int fd)
 			ret = rsplit[0];
 			free(rsplit);
 			return (ret);
-			// [ ] still stuff to free?
 		}
 	}
-	// free(stbuff[1048576]);
-	// [ ] free everything;
 	return (ret);
 }
