@@ -6,7 +6,7 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 19:31:20 by maweiss           #+#    #+#             */
-/*   Updated: 2024/02/13 00:13:40 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/02/13 17:13:47 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,7 +196,7 @@ char *get_next_line(int fd)
 	int res_read;
 	char sign_rest;
 
-	if (fd == -1)
+	if (fd == -2)
 		ft_free(stbuff, 0);
 	ret = NULL;
 	while (ret == NULL)
@@ -219,7 +219,6 @@ char *get_next_line(int fd)
 			{
 				if (res_read < 1)
 				{
-					ft_free(stbuff, 0);
 					return (NULL);
 				}
 				ft_strlen_gnl(stbuff[fd], &sign_rest, '\n');
