@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wssmrks <wssmrks@student.42.fr>            +#+  +:+       +#+        */
+/*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 19:31:20 by maweiss           #+#    #+#             */
-/*   Updated: 2024/02/14 23:41:38 by wssmrks          ###   ########.fr       */
+/*   Updated: 2024/02/15 14:55:04 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ char	*get_next_line(int fd)
 		else if (rsplit[1] == NULL)
 		{
 			free(rsplit[1]);
+			free(stbuff[fd]);
 			stbuff[fd] = rsplit[0];
 			rsplit[0] = NULL;
 			free(rsplit);
