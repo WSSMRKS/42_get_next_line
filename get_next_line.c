@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: wssmrks <wssmrks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 19:31:20 by maweiss           #+#    #+#             */
-/*   Updated: 2024/02/13 18:02:09 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/02/14 23:41:38 by wssmrks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,10 @@ char	*ft_strdup_gnl(char *src, char mode)
 int	ft_read_join(char **stbuff, int fd)
 {
 	int		bytes_read;
-	char	buffer[BUFFER_SIZE + 1];
+	char	*buffer;
 	char	*tmp;
 
+	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	bytes_read = read(fd, buffer, BUFFER_SIZE);
 	buffer[bytes_read] = 0;
 	if (bytes_read < BUFFER_SIZE && bytes_read == -1)
@@ -56,6 +57,7 @@ int	ft_read_join(char **stbuff, int fd)
 		tmp = stbuff[fd];
 		stbuff[fd] = ft_strjoin(stbuff[fd], buffer);
 		free(tmp);
+		free(buffer);
 		if (bytes_read < BUFFER_SIZE)
 			return (1);
 		else
@@ -124,9 +126,16 @@ char	*get_next_line(int fd)
 			res_read = ft_read_join(stbuff, fd);
 			if (res_read <= 1)
 			{
-				if (res_read < 1)
+				if (res_read == -1)
 				{
+					free(stbuff[fd]);
 					return (NULL);
+				}
+				if (res_read == 0)
+				{
+					ret = stbuff[fd];
+					stbuff[fd] = NULL;
+					return (ret);
 				}
 				ft_strlen_gnl(stbuff[fd], &sign_rest, '\n');
 				if (sign_rest != 'n')

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gnl_main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: wssmrks <wssmrks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 20:00:16 by maweiss           #+#    #+#             */
-/*   Updated: 2024/02/13 20:38:16 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/02/15 01:12:10 by wssmrks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <stdio.h>
 #include <dirent.h>
 
-size_t	ft_strlen(const char *str)
+static size_t	ft_strlen(const char *str)
 {
 	size_t	a;
 
@@ -73,12 +73,27 @@ int	single_line(char *file)
 	read = open(file, O_RDONLY);
 	log = open("logfile.txt", O_WRONLY | O_CREAT | O_TRUNC, 0666);
 	if (read == -1)
+	{
 		printf("Error 1: Error while opening %s\n", file);
+		close(log);
+		close(read);
+	}
 	else
 	{
 		line = get_next_line(read);
+		if (!line)
+		{
+			printf("Error 2: Error while reading file %s\n", file);
+			close(log);
+			close(read);
+			return (0);
+		}
 		write(log, line, ft_strlen(line));
 		printf("%s", line);
+		if (-1 == close(read))
+			printf("Error 3: closing read file error!\n");
+		if (-1 == close(log))
+			printf("Error 5: closing log file error!\n");
 		return (1);
 	}
 	return (0);
@@ -91,7 +106,6 @@ int	multiple_files(char *file1, char *file2)
 	int				log;
 	unsigned int	sw;
 	char			*line;
-	char			place;
 
 	read = open(file1, O_RDONLY);
 	read2 = open(file2, O_RDONLY);
@@ -140,7 +154,7 @@ int	multiple_files(char *file1, char *file2)
 			if (line)
 			{
 				printf("%s", line);
-				if (!write(log, line, ft_strlen_gnl(line, &place, '2')))
+				if (!write(log, line, ft_strlen(line)))
 				{
 					printf("Error 3: Error while writing to log.txt!\n");
 					get_next_line(-1);
@@ -161,49 +175,33 @@ int	multiple_files(char *file1, char *file2)
 
 int	main(int argc, char **argv)
 {
-	int		success;
 	char	choose;
 
 	setbuf(stdout, NULL);
-	success = 0;
-	if (argc < 3)
+	if (argc < 3 || (argc < 4 && argv[1][0] == '3'))
 	{
 		printf("Too few arguments!\n");
 		return (0);
 	}
-	while (success == 0)
+	choose = argv[1][0];
+	if (choose == '1' && single_line(argv [2]) == 1)
+		printf("single line successfully tested\n");
+	else if (choose == '2' && single_file(argv[2]) == 1)
+		printf("single file successfully tested\n");
+	else if (choose == '3' && multiple_files(argv[2], argv[3]) == 1)
+		printf("multiple files successfully tested\n");
+	else if (choose == '0')
 	{
-		choose = argv[1][0];
-		if (choose == '1' && single_line(argv [2]) == 1)
-		{
-			printf("single line successfully tested\n");
-			success = 1;
-		}
-		else if (choose == '2' && single_file(argv[2]) == 1)
-		{
-			printf("single file successfully tested\n");
-			success = 1;
-		}
-		else if (choose == '3' && multiple_files(argv[2], argv[3]) == 1)
-		{
-			printf("multiple files successfully tested\n");
-			success = 1;
-		}
-		else if (choose == '0')
-		{
-			printf("Terminating program\n");
-			return (0);
-		}
+		printf("The return value of get_next_line with fd = -1 is:\n\"%s\"\n", get_next_line(-1));
+		printf("Terminating program\n");
+	}
+	else
+	{
+		if (choose >= '0' && choose <= '3')
+			printf("test went wrong!\n");
 		else
-		{
-			if (choose >= '0' && choose <= '3')
-			{
-				printf("test went wrong!\n");
-				return (0);
-			}
-			else
-				printf("Incorrect input!\n");
-		}
+			printf("Incorrect input!\n");
+		return (0);
 	}
 	return (1);
 }
