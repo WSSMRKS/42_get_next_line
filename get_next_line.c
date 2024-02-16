@@ -6,7 +6,7 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 19:31:20 by maweiss           #+#    #+#             */
-/*   Updated: 2024/02/15 14:55:04 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/02/16 16:37:19 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,26 +43,37 @@ int	ft_read_join(char **stbuff, int fd)
 {
 	int		bytes_read;
 	char	*buffer;
+	char	*tapered_buffer;
 	char	*tmp;
 
 	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	bytes_read = read(fd, buffer, BUFFER_SIZE);
 	buffer[bytes_read] = 0;
+
 	if (bytes_read < BUFFER_SIZE && bytes_read == -1)
-		return (-1);
-	else if (bytes_read < BUFFER_SIZE && bytes_read == 0)
-		return (0);
-	else
 	{
-		tmp = stbuff[fd];
-		stbuff[fd] = ft_strjoin(stbuff[fd], buffer);
-		free(tmp);
 		free(buffer);
-		if (bytes_read < BUFFER_SIZE)
-			return (1);
-		else
-			return (2);
+		return (-1);
 	}
+	else if (bytes_read < BUFFER_SIZE && bytes_read == 0)
+	{
+		free(buffer);
+		return (0);
+	}
+	else if (bytes_read < BUFFER_SIZE)
+	{
+		tapered_buffer = ft_strdup_gnl(buffer, '0');
+		free(buffer);
+		buffer = tapered_buffer;
+	}
+	tmp = stbuff[fd];
+	stbuff[fd] = ft_strjoin(stbuff[fd], buffer);
+	free(tmp);
+	free(buffer);
+	if (bytes_read < BUFFER_SIZE)
+		return (1);
+	else
+		return (2);
 }
 
 char	**ft_split_nl(char *find_nl)
@@ -100,11 +111,11 @@ char	**ft_split_nl(char *find_nl)
 
 char	*get_next_line(int fd)
 {
-	static char	*stbuff[1048576 + 1];
+	static char	*stbuff[MAX_FD + 1];
 	char		**rsplit;
 	char		*ret;
 	int			res_read;
-	char		sign_rest;
+	// char		sign_rest;
 
 	if (fd == -2)
 		ft_free(stbuff, 0);
@@ -120,7 +131,6 @@ char	*get_next_line(int fd)
 		else if (rsplit[1] == NULL)
 		{
 			free(rsplit[1]);
-			free(stbuff[fd]);
 			stbuff[fd] = rsplit[0];
 			rsplit[0] = NULL;
 			free(rsplit);
@@ -134,17 +144,22 @@ char	*get_next_line(int fd)
 				}
 				if (res_read == 0)
 				{
-					ret = stbuff[fd];
-					stbuff[fd] = NULL;
+					if (stbuff[fd][0] != 0)
+					{
+						ret = stbuff[fd];
+						stbuff[fd] = NULL;
+					}
+					else
+						ret = NULL;
 					return (ret);
 				}
-				ft_strlen_gnl(stbuff[fd], &sign_rest, '\n');
-				if (sign_rest != 'n')
-				{
-					ret = stbuff[fd];
-					stbuff[fd] = NULL;
-					return (ret);
-				}
+				// ft_strlen_gnl(stbuff[fd], &sign_rest, '\n');
+				// if (sign_rest != 'n')
+				// {
+				// 	ret = stbuff[fd];
+				// 	stbuff[fd] = NULL;
+				// 	return (ret);
+				// }
 			}
 		}
 		else

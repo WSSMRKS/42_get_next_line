@@ -6,7 +6,7 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 19:32:04 by maweiss           #+#    #+#             */
-/*   Updated: 2024/02/13 19:13:28 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/02/16 16:22:42 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,12 @@
 # include <ctype.h>
 # include <limits.h>
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 250
+#  define BUFFER_SIZE 42
+
+# endif
+# ifndef MAX_FD
+#  define MAX_FD 100
+// max should be 1048576 + 1
 
 # endif
 

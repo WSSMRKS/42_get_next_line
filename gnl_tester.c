@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gnl_main.c                                         :+:      :+:    :+:   */
+/*   gnl_tester.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wssmrks <wssmrks@student.42.fr>            +#+  +:+       +#+        */
+/*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 20:00:16 by maweiss           #+#    #+#             */
-/*   Updated: 2024/02/15 01:12:10 by wssmrks          ###   ########.fr       */
+/*   Updated: 2024/02/16 14:27:32 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,14 @@ int	single_file(char *file)
 
 	done = 0;
 	read = open(file, O_RDONLY);
-	log = open("logfile.txt", O_WRONLY | O_CREAT | O_TRUNC, 0666);
-	if (read == -1)
+	log = open("tmp.txt", O_WRONLY | O_CREAT | O_TRUNC, 0666);
+	if (read == -1 || log == -1)
 	{
 		printf("Error 1: Error while opening file\n");
+		if (log == -1)
+			close(read);
+		else
+			close(log);
 		return (0);
 	}
 	else
@@ -60,6 +64,8 @@ int	single_file(char *file)
 			printf("Error 2: closing read file error!\n");
 		if (-1 == close(log))
 			printf("Error 2: closing read file error!\n");
+		close(log);
+		close(read);
 		return (1);
 	}
 }
@@ -71,7 +77,7 @@ int	single_line(char *file)
 	int		log;
 
 	read = open(file, O_RDONLY);
-	log = open("logfile.txt", O_WRONLY | O_CREAT | O_TRUNC, 0666);
+	log = open("tmp.txt", O_WRONLY | O_CREAT | O_TRUNC, 0666);
 	if (read == -1)
 	{
 		printf("Error 1: Error while opening %s\n", file);
@@ -109,7 +115,7 @@ int	multiple_files(char *file1, char *file2)
 
 	read = open(file1, O_RDONLY);
 	read2 = open(file2, O_RDONLY);
-	log = open("logfile.txt", O_WRONLY | O_CREAT | O_TRUNC, 0666);
+	log = open("tmp.txt", O_WRONLY | O_CREAT | O_TRUNC, 0666);
 	if (read == -1 || read2 == -1 || log == -1)
 	{
 		if (read == -1)
@@ -117,7 +123,7 @@ int	multiple_files(char *file1, char *file2)
 		if (read2 == -1)
 			printf("Error 2: Error while opening file %s!\n", file2);
 		if (log == -1)
-			printf("Error 3: Error while opening logfile.txt!\n");
+			printf("Error 3: Error while opening tmp.txt!\n");
 		return (0);
 	}
 	else
@@ -184,7 +190,7 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	choose = argv[1][0];
-	if (choose == '1' && single_line(argv [2]) == 1)
+	if (choose == '1' && single_line(argv[2]) == 1)
 		printf("single line successfully tested\n");
 	else if (choose == '2' && single_file(argv[2]) == 1)
 		printf("single file successfully tested\n");

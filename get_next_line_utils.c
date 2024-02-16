@@ -6,7 +6,7 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 19:31:20 by maweiss           #+#    #+#             */
-/*   Updated: 2024/02/13 19:12:24 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/02/16 16:35:10 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_free(char **tofree, int mode)
 	if (!tofree)
 		return ;
 	i = 0;
-	while (i < 1048576 + 1)
+	while (i < MAX_FD)
 	{
 		if (tofree[i])
 			free((void *)tofree[i]);
@@ -63,9 +63,9 @@ size_t	ft_strlen_gnl(const char *str, char *sign, char mode)
 	*sign = '0';
 	if (!str)
 		return (i);
-	while (mode == '0' && str[i])
+	while (mode == '0' && str[i] != '\0')
 		i++;
-	while (mode != '0' && str[i] != '\0')
+	while (mode != '0' && str[i] != '\0' && str[i] != '\n')
 	{
 		if (str[i++] == '\n')
 			*sign = 'n';
