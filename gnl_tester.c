@@ -6,7 +6,7 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 20:00:16 by maweiss           #+#    #+#             */
-/*   Updated: 2024/02/16 14:27:32 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/02/16 18:14:40 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int	single_file(char *file)
 			{
 				printf("%s", line);
 				write(log, line, ft_strlen(line));
+				free(line);
 			}
 		}
 		if (-1 == close(read))
@@ -96,6 +97,7 @@ int	single_line(char *file)
 		}
 		write(log, line, ft_strlen(line));
 		printf("%s", line);
+		free(line);
 		if (-1 == close(read))
 			printf("Error 3: closing read file error!\n");
 		if (-1 == close(log))
@@ -164,6 +166,7 @@ int	multiple_files(char *file1, char *file2)
 				{
 					printf("Error 3: Error while writing to log.txt!\n");
 					get_next_line(-1);
+					free(line);
 					return (0);
 				}
 			}

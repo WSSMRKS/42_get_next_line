@@ -6,11 +6,11 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 19:31:20 by maweiss           #+#    #+#             */
-/*   Updated: 2024/02/16 20:07:57 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/02/16 19:09:07 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 void	ft_free(char **tofree, int mode)
 {
@@ -47,9 +47,9 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	res = malloc(sizeof(char) * (len + 1));
 	if (!res)
 		return (NULL);
-	while (tmp1 && *tmp1)
+	while (*tmp1)
 		*res++ = *tmp1++;
-	while (tmp2 && *tmp2)
+	while (*tmp2)
 		*res++ = *tmp2++;
 	*res = '\0';
 	return (&res[-len]);

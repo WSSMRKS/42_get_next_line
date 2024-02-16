@@ -6,13 +6,13 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 19:31:20 by maweiss           #+#    #+#             */
-/*   Updated: 2024/02/16 20:12:35 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/02/16 19:29:19 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // Implement a get next line function:
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_strdup_gnl(char *src, char mode)
 {
@@ -100,11 +100,11 @@ char	**ft_split_nl(char *find_nl)
 	if (sign == '0')
 	{
 		ret[0] = ft_strdup_gnl(find_nl, '0');
-		// if (ret[0] == NULL)
-		// {
-		// 	ret[0] = malloc(sizeof(char));
-		// 	ret[0][0] = '\0';
-		// }
+		if (ret[0] == NULL)
+		{
+			ret[0] = malloc(sizeof(char));
+			ret[0][0] = '\0';
+		}
 	}
 	free(find_nl);
 	return (ret);
@@ -144,7 +144,7 @@ char	*get_next_line(int fd)
 				}
 				if (res_read == 0)
 				{
-					if (stbuff[fd] && stbuff[fd][0] != 0)
+					if (stbuff[fd][0] != 0)
 					{
 						ret = stbuff[fd];
 						stbuff[fd] = NULL;

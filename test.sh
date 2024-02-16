@@ -91,7 +91,7 @@
 		# 	TFILE="test_src/1_line_nl.txt"
 		# 	if [ $VALGRIND == 1 ]
 		# 	then
-		# 	valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 1 $TFILE > $S
+		# 	valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 1 $TFILE > $S
 		# 	else
 		# 	./a.out 1 $TFILE > $S
 		# 	fi
@@ -99,7 +99,7 @@
 		# 	then
 		# 	echo "valgrind error!"
 		# 	echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
-		# 	echo "valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 1 $TFILE > $S" >> $LOGFILE
+		# 	echo "valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 1 $TFILE > $S" >> $LOGFILE
 		# 	elif [ $? == 0 ]
 		# 	then
 		# 	echo "program error"
@@ -118,7 +118,7 @@
 		# 	echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
 		# 	if [ $VALGRIND == 1 ]
 		# 	then
-		# 	echo "valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 1 $TFILE > $S" >> $LOGFILE
+		# 	echo "valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 1 $TFILE > $S" >> $LOGFILE
 		# 	else
 		# 	echo "./a.out 1 $TFILE > $S" >> $LOGFILE
 		# 	fi
@@ -127,7 +127,7 @@
 		# 	TFILE="test_src/1_line_0.txt"
 		# 	if [ $VALGRIND == 1 ]
 		# 	then
-		# 	valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 1 $TFILE > $S
+		# 	valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 1 $TFILE > $S
 		# 	else
 		# 	./a.out 1 $TFILE > $S
 		# 	fi
@@ -135,7 +135,7 @@
 		# 	then
 		# 	echo "valgrind error!"
 		# 	echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
-		# 	echo "valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 1 $TFILE > $S" >> $LOGFILE
+		# 	echo "valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 1 $TFILE > $S" >> $LOGFILE
 		# 	elif [ $? == 0 ]
 		# 	then
 		# 	echo "program error"
@@ -154,7 +154,7 @@
 		# 	echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
 		# 	if [ $VALGRIND == 1 ]
 		# 	then
-		# 	echo "valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 1 $TFILE > $S" >> $LOGFILE
+		# 	echo "valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 1 $TFILE > $S" >> $LOGFILE
 		# 	else
 		# 	echo "./a.out 1 $TFILE > $S" >> $LOGFILE
 		# 	fi
@@ -163,7 +163,7 @@
 		# 	TFILE="test_src/1_line_long_nl.txt"
 		# 	if [ $VALGRIND == 1 ]
 		# 	then
-		# 	valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 1 $TFILE > $S
+		# 	valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 1 $TFILE > $S
 		# 	else
 		# 	./a.out 1 $TFILE > $S
 		# 	fi
@@ -171,7 +171,7 @@
 		# 	then
 		# 	echo "valgrind error!"
 		# 	echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
-		# 	echo "valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 1 $TFILE > $S" >> $LOGFILE
+		# 	echo "valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 1 $TFILE > $S" >> $LOGFILE
 		# 	elif [ $? == 0 ]
 		# 	then
 		# 	echo "program error"
@@ -190,7 +190,7 @@
 		# 	echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
 		# 	if [ $VALGRIND == 1 ]
 		# 	then
-		# 	echo "valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 1 $TFILE > $S" >> $LOGFILE
+		# 	echo "valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 1 $TFILE > $S" >> $LOGFILE
 		# 	else
 		# 	echo "./a.out 1 $TFILE > $S" >> $LOGFILE
 		# 	fi
@@ -199,7 +199,7 @@
 		# 	TFILE="test_src/1_line_long_0.txt"
 		# 	if [ $VALGRIND == 1 ]
 		# 	then
-		# 	valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 1 $TFILE > $S
+		# 	valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 1 $TFILE > $S
 		# 	else
 		# 	./a.out 1 $TFILE > $S
 		# 	fi
@@ -207,7 +207,7 @@
 		# 	then
 		# 	echo "valgrind error!"
 		# 	echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
-		# 	echo "valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 1 $TFILE > $S" >> $LOGFILE
+		# 	echo "valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 1 $TFILE > $S" >> $LOGFILE
 		# 	elif [ $? == 0 ]
 		# 	then
 		# 	echo "program error"
@@ -226,7 +226,7 @@
 		# 	echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
 		# 	if [ $VALGRIND == 1 ]
 		# 	then
-		# 	echo "valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 1 $TFILE > $S" >> $LOGFILE
+		# 	echo "valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 1 $TFILE > $S" >> $LOGFILE
 		# 	else
 		# 	echo "./a.out 1 $TFILE > $S" >> $LOGFILE
 		# 	fi
@@ -235,7 +235,7 @@
 		# 	TFILE="test_src/1_line_only_nl.txt"
 		# 	if [ $VALGRIND == 1 ]
 		# 	then
-		# 	valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 1 $TFILE > $S
+		# 	valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 1 $TFILE > $S
 		# 	else
 		# 	./a.out 1 $TFILE > $S
 		# 	fi
@@ -243,7 +243,7 @@
 		# 	then
 		# 	echo "valgrind error!"
 		# 	echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
-		# 	echo "valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 1 $TFILE > $S" >> $LOGFILE
+		# 	echo "valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 1 $TFILE > $S" >> $LOGFILE
 		# 	elif [ $? == 0 ]
 		# 	then
 		# 	echo "program error"
@@ -262,7 +262,7 @@
 		# 	echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
 		# 	if [ $VALGRIND == 1 ]
 		# 	then
-		# 	echo "valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 1 $TFILE > $S" >> $LOGFILE
+		# 	echo "valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 1 $TFILE > $S" >> $LOGFILE
 		# 	else
 		# 	echo "./a.out 1 $TFILE > $S" >> $LOGFILE
 		# 	fi
@@ -271,7 +271,7 @@
 		# 	TFILE="test_src/1_line_empty.txt"
 		# 	if [ $VALGRIND == 1 ]
 		# 	then
-		# 	valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 1 $TFILE > $S
+		# 	valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 1 $TFILE > $S
 		# 	else
 		# 	./a.out 1 $TFILE > $S
 		# 	fi
@@ -279,7 +279,7 @@
 		# 	then
 		# 	echo "valgrind error!"
 		# 	echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
-		# 	echo "valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 1 $TFILE > $S" >> $LOGFILE
+		# 	echo "valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 1 $TFILE > $S" >> $LOGFILE
 		# 	elif [ $? == 0 ]
 		# 	then
 		# 	echo "program error"
@@ -298,7 +298,7 @@
 		# 	echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
 		# 	if [ $VALGRIND == 1 ]
 		# 	then
-		# 	echo "valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 1 $TFILE > $S" >> $LOGFILE
+		# 	echo "valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 1 $TFILE > $S" >> $LOGFILE
 		# 	else
 		# 	echo "./a.out 1 $TFILE > $S" >> $LOGFILE
 		# 	fi
@@ -314,6 +314,7 @@
 		# 	((ROUND=ROUND+1))
 		# done
 		# Single line done!
+
 		if [ "$line" == "1" ]
 		then
 			VALGRIND=1
@@ -342,14 +343,14 @@
 			BUFFER_SIZE=100
 			elif [ $ROUND == 4 ]
 			then
-			BUFFER_SIZE=100000000
+			BUFFER_SIZE=1000000
 			fi
 			cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c
-			echo "Tests with BUFFER_SIZE=$BUFFER_SIZE:"
+			echo "Tests with BUFFER_SIZE=$BUFFER_SIZE:" | tee -a $LOGFILE
 			TFILE="test_src/2_file_5_lines.txt"
 			if [ $VALGRIND == 1 ]
 			then
-			valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S
+			valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=full ./a.out 2 $TFILE > $S
 			else
 			./a.out 2 $TFILE > $S
 			fi
@@ -357,7 +358,7 @@
 			then
 			echo "valgrind error!"
 			echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
-			echo "valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S" >> $LOGFILE
+			echo "valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S" >> $LOGFILE
 			elif [ $? == 0 ]
 			then
 			echo "program error"
@@ -376,7 +377,7 @@
 			echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
 			if [ $VALGRIND == 1 ]
 			then
-			echo "valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S" >> $LOGFILE
+			echo "valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S" >> $LOGFILE
 			else
 			echo "./a.out 2 $TFILE > $S" >> $LOGFILE
 			fi
@@ -384,9 +385,24 @@
 			fi
 			if [ $VALGRIND == 1 ]
 			then
-			valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 2 "$TFILE" > "$S"
+			valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 2 "$TFILE" > "$S"
 			else
 			./a.out 2 "$TFILE" > "$S"
+			fi
+			if [ $? == 5 ]
+			then
+			echo "valgrind error!"
+			echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
+			echo "valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S" >> $LOGFILE
+			elif [ $? == 0 ]
+			then
+			echo "program error"
+			echo "./a.out 1 $TFILE > $S" >> $LOGFILE
+			elif [ $? == 1 ]
+			then
+			echo "Return value OK!" | tee -a $LOGFILE
+			else
+			echo "Return value undefined"
 			fi
 			if [ "$(diff $LFILE $TFILE)" == "" ]
 			then
@@ -396,7 +412,7 @@
 			echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
 			if [ $VALGRIND == 1 ]
 			then
-			echo "valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S" >> $LOGFILE
+			echo "valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S" >> $LOGFILE
 			else
 			echo "./a.out 2 $TFILE > $S" >> $LOGFILE
 			fi
@@ -405,9 +421,24 @@
 			TFILE="test_src/1_line_0.txt"
 			if [ $VALGRIND == 1 ]
 			then
-			valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 2 "$TFILE" > "$S"
+			valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 2 "$TFILE" > "$S"
 			else
 			./a.out 2 "$TFILE" > "$S"
+			fi
+			if [ $? == 5 ]
+			then
+			echo "valgrind error!"
+			echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
+			echo "valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S" >> $LOGFILE
+			elif [ $? == 0 ]
+			then
+			echo "program error"
+			echo "./a.out 1 $TFILE > $S" >> $LOGFILE
+			elif [ $? == 1 ]
+			then
+			echo "Return value OK!" | tee -a $LOGFILE
+			else
+			echo "Return value undefined"
 			fi
 			if [ "$(diff $LFILE $TFILE)" == "" ]
 			then
@@ -417,7 +448,7 @@
 			echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
 			if [ $VALGRIND == 1 ]
 			then
-			echo "valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S" >> $LOGFILE
+			echo "valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S" >> $LOGFILE
 			else
 			echo "./a.out 2 $TFILE > $S" >> $LOGFILE
 			fi
@@ -426,7 +457,7 @@
 			TFILE="test_src/1_line_long_nl.txt"
 			if [ $VALGRIND == 1 ]
 			then
-			valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S
+			valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S
 			else
 			./a.out 2 $TFILE > $S
 			fi
@@ -434,7 +465,7 @@
 			then
 			echo "valgrind error!"
 			echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
-			echo "valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S" >> $LOGFILE
+			echo "valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S" >> $LOGFILE
 			elif [ $? == 0 ]
 			then
 			echo "program error"
@@ -453,7 +484,7 @@
 			echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
 			if [ $VALGRIND == 1 ]
 			then
-			echo "valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S" >> $LOGFILE
+			echo "valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S" >> $LOGFILE
 			else
 			echo "./a.out 2 $TFILE > $S" >> $LOGFILE
 			fi
@@ -462,7 +493,7 @@
 			TFILE="test_src/1_line_long_0.txt"
 			if [ $VALGRIND == 1 ]
 			then
-			valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S
+			valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S
 			else
 			./a.out 2 $TFILE > $S
 			fi
@@ -470,7 +501,7 @@
 			then
 			echo "valgrind error!"
 			echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
-			echo "valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S" >> $LOGFILE
+			echo "valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S" >> $LOGFILE
 			elif [ $? == 0 ]
 			then
 			echo "program error"
@@ -489,7 +520,7 @@
 			echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
 			if [ $VALGRIND == 1 ]
 			then
-			echo "valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S" >> $LOGFILE
+			echo "valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S" >> $LOGFILE
 			else
 			echo "./a.out 2 $TFILE > $S" >> $LOGFILE
 			fi
@@ -498,7 +529,7 @@
 			TFILE="test_src/1_line_only_nl.txt"
 			if [ $VALGRIND == 1 ]
 			then
-			valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S
+			valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S
 			else
 			./a.out 2 $TFILE > $S
 			fi
@@ -506,7 +537,7 @@
 			then
 			echo "valgrind error!"
 			echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
-			echo "valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S" >> $LOGFILE
+			echo "valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S" >> $LOGFILE
 			elif [ $? == 0 ]
 			then
 			echo "program error"
@@ -525,7 +556,7 @@
 			echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
 			if [ $VALGRIND == 1 ]
 			then
-			echo "valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S" >> $LOGFILE
+			echo "valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S" >> $LOGFILE
 			else
 			echo "./a.out 2 $TFILE > $S" >> $LOGFILE
 			fi
@@ -534,7 +565,7 @@
 			TFILE="test_src/1_line_empty.txt"
 			if [ $VALGRIND == 1 ]
 			then
-			valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S
+			valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S
 			else
 			./a.out 2 $TFILE > $S
 			fi
@@ -542,7 +573,7 @@
 			then
 			echo "valgrind error!"
 			echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
-			echo "valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S" >> $LOGFILE
+			echo "valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S" >> $LOGFILE
 			elif [ $? == 0 ]
 			then
 			echo "program error"
@@ -561,7 +592,7 @@
 			echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
 			if [ $VALGRIND == 1 ]
 			then
-			echo "valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S" >> $LOGFILE
+			echo "valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S" >> $LOGFILE
 			else
 			echo "./a.out 2 $TFILE > $S" >> $LOGFILE
 			fi
@@ -570,7 +601,7 @@
 			TFILE="test_src/2_file_1longline.txt"
 			if [ $VALGRIND == 1 ]
 			then
-			valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S
+			valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S
 			else
 			./a.out 2 $TFILE > $S
 			fi
@@ -578,7 +609,7 @@
 			then
 			echo "valgrind error!"
 			echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
-			echo "valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S" >> $LOGFILE
+			echo "valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S" >> $LOGFILE
 			elif [ $? == 0 ]
 			then
 			echo "program error"
@@ -597,7 +628,7 @@
 			echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
 			if [ $VALGRIND == 1 ]
 			then
-			echo "valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S" >> $LOGFILE
+			echo "valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S" >> $LOGFILE
 			else
 			echo "./a.out 2 $TFILE > $S" >> $LOGFILE
 			fi
@@ -606,7 +637,7 @@
 			TFILE="test_src/2_file_5nl.txt"
 			if [ $VALGRIND == 1 ]
 			then
-			valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S
+			valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S
 			else
 			./a.out 2 $TFILE > $S
 			fi
@@ -614,7 +645,7 @@
 			then
 			echo "valgrind error!"
 			echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
-			echo "valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S" >> $LOGFILE
+			echo "valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S" >> $LOGFILE
 			elif [ $? == 0 ]
 			then
 			echo "program error"
@@ -633,7 +664,7 @@
 			echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
 			if [ $VALGRIND == 1 ]
 			then
-			echo "valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S" >> $LOGFILE
+			echo "valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S" >> $LOGFILE
 			else
 			echo "./a.out 2 $TFILE > $S" >> $LOGFILE
 			fi
@@ -642,7 +673,7 @@
 			TFILE="test_src/2_file_10_long_lines.txt"
 			if [ $VALGRIND == 1 ]
 			then
-			valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S
+			valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S
 			else
 			./a.out 2 $TFILE > $S
 			fi
@@ -650,7 +681,7 @@
 			then
 			echo "valgrind error!"
 			echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
-			echo "valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S" >> $LOGFILE
+			echo "valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S" >> $LOGFILE
 			elif [ $? == 0 ]
 			then
 			echo "program error"
@@ -669,7 +700,7 @@
 			echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
 			if [ $VALGRIND == 1 ]
 			then
-			echo "valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S" >> $LOGFILE
+			echo "valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S" >> $LOGFILE
 			else
 			echo "./a.out 2 $TFILE > $S" >> $LOGFILE
 			fi
@@ -678,7 +709,7 @@
 			TFILE="test_src/2_file_100lines.txt"
 			if [ $VALGRIND == 1 ]
 			then
-			valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S
+			valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S
 			else
 			./a.out 2 $TFILE > $S
 			fi
@@ -686,7 +717,7 @@
 			then
 			echo "valgrind error!"
 			echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
-			echo "valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S" >> $LOGFILE
+			echo "valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S" >> $LOGFILE
 			elif [ $? == 0 ]
 			then
 			echo "program error"
@@ -705,7 +736,7 @@
 			echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
 			if [ $VALGRIND == 1 ]
 			then
-			echo "valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S" >> $LOGFILE
+			echo "valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S" >> $LOGFILE
 			else
 			echo "./a.out 2 $TFILE > $S" >> $LOGFILE
 			fi
@@ -714,7 +745,7 @@
 			TFILE="test_src/2_file_100nl.txt"
 			if [ $VALGRIND == 1 ]
 			then
-			valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S
+			valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S
 			else
 			./a.out 2 $TFILE > $S
 			fi
@@ -722,7 +753,7 @@
 			then
 			echo "valgrind error!"
 			echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
-			echo "valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S" >> $LOGFILE
+			echo "valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S" >> $LOGFILE
 			elif [ $? == 0 ]
 			then
 			echo "program error"
@@ -741,7 +772,7 @@
 			echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
 			if [ $VALGRIND == 1 ]
 			then
-			echo "valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S" >> $LOGFILE
+			echo "valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S" >> $LOGFILE
 			else
 			echo "./a.out 2 $TFILE > $S" >> $LOGFILE
 			fi
@@ -750,7 +781,7 @@
 			TFILE="test_src/2_file_empty.txt"
 			if [ $VALGRIND == 1 ]
 			then
-			valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S
+			valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S
 			else
 			./a.out 2 $TFILE > $S
 			fi
@@ -758,7 +789,7 @@
 			then
 			echo "valgrind error!"
 			echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
-			echo "valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S" >> $LOGFILE
+			echo "valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S" >> $LOGFILE
 			elif [ $? == 0 ]
 			then
 			echo "program error"
@@ -777,7 +808,7 @@
 			echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
 			if [ $VALGRIND == 1 ]
 			then
-			echo "valgrind --error-exitcode=5 --exit-on-first-error=yes --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S" >> $LOGFILE
+			echo "valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S" >> $LOGFILE
 			else
 			echo "./a.out 2 $TFILE > $S" >> $LOGFILE
 			fi
