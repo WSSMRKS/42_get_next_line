@@ -6,7 +6,7 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 19:31:20 by maweiss           #+#    #+#             */
-/*   Updated: 2024/02/16 22:42:34 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/02/16 22:52:56 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ int	ft_read_join(char **stbuff, int fd)
 	if (bytes_read < BUFFER_SIZE && bytes_read == -1)
 	{
 		free(buffer);
-		free(stbuff[fd]);
 		return (-1);
 	}
 	else if (bytes_read < BUFFER_SIZE && bytes_read == 0)
