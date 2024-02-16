@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 19:31:20 by maweiss           #+#    #+#             */
-/*   Updated: 2024/02/16 22:29:59 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/02/16 22:38:01 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // Implement a get next line function:
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_strdup_gnl(char *src, char mode)
 {
@@ -46,7 +46,6 @@ int	ft_read_join(char **stbuff, int fd)
 
 	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	bytes_read = read(fd, buffer, BUFFER_SIZE);
-	buffer[bytes_read] = 0;
 	if (bytes_read < BUFFER_SIZE && bytes_read == -1)
 	{
 		free(buffer);
@@ -58,7 +57,8 @@ int	ft_read_join(char **stbuff, int fd)
 		free(buffer);
 		return (0);
 	}
-	else if (bytes_read < BUFFER_SIZE)
+	buffer[bytes_read] = 0;
+	if (bytes_read < BUFFER_SIZE)
 	{
 		tapered_buffer = ft_strdup_gnl(buffer, '0');
 		free(buffer);
@@ -96,14 +96,7 @@ char	**ft_split_nl(char *find_nl)
 				+ ft_strlen_gnl(find_nl, &sign, '\n'), '0');
 	}
 	if (sign == '0')
-	{
 		ret[0] = ft_strdup_gnl(find_nl, '0');
-		// if (ret[0] == NULL)
-		// {
-		// 	ret[0] = malloc(sizeof(char));
-		// 	ret[0][0] = '\0';
-		// }
-	}
 	free(find_nl);
 	return (ret);
 }

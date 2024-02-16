@@ -6,7 +6,7 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 19:31:20 by maweiss           #+#    #+#             */
-/*   Updated: 2024/02/16 22:32:13 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/02/16 22:42:34 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,10 @@ int	ft_read_join(char **stbuff, int fd)
 
 	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	bytes_read = read(fd, buffer, BUFFER_SIZE);
-	buffer[bytes_read] = 0;
 	if (bytes_read < BUFFER_SIZE && bytes_read == -1)
 	{
 		free(buffer);
-		free(stbuff[fd]);\
+		free(stbuff[fd]);
 		return (-1);
 	}
 	else if (bytes_read < BUFFER_SIZE && bytes_read == 0)
@@ -58,7 +57,8 @@ int	ft_read_join(char **stbuff, int fd)
 		free(buffer);
 		return (0);
 	}
-	else if (bytes_read < BUFFER_SIZE)
+	buffer[bytes_read] = 0;
+	if (bytes_read < BUFFER_SIZE)
 	{
 		tapered_buffer = ft_strdup_gnl(buffer, '0');
 		free(buffer);
@@ -96,14 +96,7 @@ char	**ft_split_nl(char *find_nl)
 				+ ft_strlen_gnl(find_nl, &sign, '\n'), '0');
 	}
 	if (sign == '0')
-	{
 		ret[0] = ft_strdup_gnl(find_nl, '0');
-		// if (ret[0] == NULL)
-		// {
-		// 	ret[0] = malloc(sizeof(char));
-		// 	ret[0][0] = '\0';
-		// }
-	}
 	free(find_nl);
 	return (ret);
 }
