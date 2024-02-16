@@ -6,7 +6,7 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 19:31:20 by maweiss           #+#    #+#             */
-/*   Updated: 2024/02/16 20:12:35 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/02/16 22:32:13 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	ft_read_join(char **stbuff, int fd)
 	if (bytes_read < BUFFER_SIZE && bytes_read == -1)
 	{
 		free(buffer);
+		free(stbuff[fd]);\
 		return (-1);
 	}
 	else if (bytes_read < BUFFER_SIZE && bytes_read == 0)
@@ -91,11 +92,8 @@ char	**ft_split_nl(char *find_nl)
 	if (sign == 'n')
 	{
 		ret[0] = ft_strdup_gnl(find_nl, '\n');
-		printf("I am gonna be returned: \"%s\"\n", ret[0]);
 		ret[1] = ft_strdup_gnl(find_nl
 				+ ft_strlen_gnl(find_nl, &sign, '\n'), '0');
-		printf("I am gonna be returned: \"%s\"\n", ret[0]);
-		printf("I go to Buffer: \"%s\"\n", ret[1]);
 	}
 	if (sign == '0')
 	{

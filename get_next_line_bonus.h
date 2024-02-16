@@ -6,12 +6,12 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 19:32:04 by maweiss           #+#    #+#             */
-/*   Updated: 2024/02/16 19:12:37 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/02/16 22:18:25 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_BONUS_H
-# define GET_NEXT_LINE_BONUS_H
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 # include <stdarg.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -25,7 +25,7 @@
 
 # endif
 # ifndef MAX_FD
-#  define MAX_FD 1048576 + 1
+#  define MAX_FD 100 + 1
 // max should be 1048576 + 1
 
 # endif

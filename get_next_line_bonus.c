@@ -6,13 +6,13 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 19:31:20 by maweiss           #+#    #+#             */
-/*   Updated: 2024/02/16 19:29:19 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/02/16 22:29:59 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // Implement a get next line function:
 
-#include "get_next_line_bonus.h"
+#include "get_next_line.h"
 
 char	*ft_strdup_gnl(char *src, char mode)
 {
@@ -50,6 +50,7 @@ int	ft_read_join(char **stbuff, int fd)
 	if (bytes_read < BUFFER_SIZE && bytes_read == -1)
 	{
 		free(buffer);
+		free(stbuff[fd]);
 		return (-1);
 	}
 	else if (bytes_read < BUFFER_SIZE && bytes_read == 0)
@@ -91,20 +92,17 @@ char	**ft_split_nl(char *find_nl)
 	if (sign == 'n')
 	{
 		ret[0] = ft_strdup_gnl(find_nl, '\n');
-		printf("I am gonna be returned: \"%s\"\n", ret[0]);
 		ret[1] = ft_strdup_gnl(find_nl
 				+ ft_strlen_gnl(find_nl, &sign, '\n'), '0');
-		printf("I am gonna be returned: \"%s\"\n", ret[0]);
-		printf("I go to Buffer: \"%s\"\n", ret[1]);
 	}
 	if (sign == '0')
 	{
 		ret[0] = ft_strdup_gnl(find_nl, '0');
-		if (ret[0] == NULL)
-		{
-			ret[0] = malloc(sizeof(char));
-			ret[0][0] = '\0';
-		}
+		// if (ret[0] == NULL)
+		// {
+		// 	ret[0] = malloc(sizeof(char));
+		// 	ret[0][0] = '\0';
+		// }
 	}
 	free(find_nl);
 	return (ret);
@@ -144,7 +142,7 @@ char	*get_next_line(int fd)
 				}
 				if (res_read == 0)
 				{
-					if (stbuff[fd][0] != 0)
+					if (stbuff[fd] && stbuff[fd][0] != 0)
 					{
 						ret = stbuff[fd];
 						stbuff[fd] = NULL;

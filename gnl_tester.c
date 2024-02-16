@@ -6,7 +6,7 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 20:00:16 by maweiss           #+#    #+#             */
-/*   Updated: 2024/02/16 18:14:40 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/02/16 22:00:42 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,51 @@ int	single_file(char *file)
 		while (done != 1)
 		{
 			line = get_next_line(read);
+			if (!line)
+				done = 1;
+			else
+			{
+				printf("%s", line);
+				write(log, line, ft_strlen(line));
+				free(line);
+			}
+		}
+		if (-1 == close(read))
+			printf("Error 2: closing read file error!\n");
+		if (-1 == close(log))
+			printf("Error 2: closing read file error!\n");
+		close(log);
+		close(read);
+		return (1);
+	}
+}
+
+int	inval_fd(char *file)
+{
+	int		read;
+	int		log;
+	char	*line;
+	int		done;
+
+	done = 0;
+	read = open(file, O_RDONLY);
+	close(read);
+	log = open("tmp.txt", O_WRONLY | O_CREAT | O_TRUNC, 0666);
+	if (read == -1 || log == -1)
+	{
+		printf("Error 1: Error while opening file\n");
+		if (log == -1)
+			close(read);
+		else
+			close(log);
+		return (0);
+	}
+	else
+	{
+		while (done != 1)
+		{
+			line = get_next_line(read);
+			printf("%s", get_next_line(-1));
 			if (!line)
 				done = 1;
 			else
@@ -199,6 +244,8 @@ int	main(int argc, char **argv)
 		printf("single file successfully tested\n");
 	else if (choose == '3' && multiple_files(argv[2], argv[3]) == 1)
 		printf("multiple files successfully tested\n");
+	else if (choose == '4' && inval_fd(argv[2]) == 1)
+		printf("single file successfully tested\n");
 	else if (choose == '0')
 	{
 		printf("The return value of get_next_line with fd = -1 is:\n\"%s\"\n", get_next_line(-1));
