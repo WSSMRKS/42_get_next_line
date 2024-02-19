@@ -6,7 +6,7 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 20:00:16 by maweiss           #+#    #+#             */
-/*   Updated: 2024/02/16 22:00:42 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/02/19 18:49:49 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <stdio.h>
 #include <dirent.h>
 
-static size_t	ft_strlen(const char *str)
+static size_t	ft_strlen_tester(const char *str)
 {
 	size_t	a;
 
@@ -57,7 +57,7 @@ int	single_file(char *file)
 			else
 			{
 				printf("%s", line);
-				write(log, line, ft_strlen(line));
+				write(log, line, ft_strlen_tester(line));
 				free(line);
 			}
 		}
@@ -102,7 +102,7 @@ int	inval_fd(char *file)
 			else
 			{
 				printf("%s", line);
-				write(log, line, ft_strlen(line));
+				write(log, line, ft_strlen_tester(line));
 				free(line);
 			}
 		}
@@ -140,7 +140,7 @@ int	single_line(char *file)
 			close(read);
 			return (0);
 		}
-		write(log, line, ft_strlen(line));
+		write(log, line, ft_strlen_tester(line));
 		printf("%s", line);
 		free(line);
 		if (-1 == close(read))
@@ -207,7 +207,7 @@ int	multiple_files(char *file1, char *file2)
 			if (line)
 			{
 				printf("%s", line);
-				if (!write(log, line, ft_strlen(line)))
+				if (!write(log, line, ft_strlen_tester(line)))
 				{
 					printf("Error 3: Error while writing to log.txt!\n");
 					get_next_line(-1);

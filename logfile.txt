@@ -1,0 +1,120 @@
+Tests with BUFFER_SIZE=1:
+Return value OK!
+cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=1 gnl_tester.c get_next_line.c get_next_line_utils.c
+valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=full ./a.out 2 test_src/2_file_5_lines.txt > /dev/null
+Return value OK!
+cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=1 gnl_tester.c get_next_line.c get_next_line_utils.c
+valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=full ./a.out 2 test_src/42_with_nl > /dev/null
+Return value OK!
+cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=1 gnl_tester.c get_next_line.c get_next_line_utils.c
+valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=full ./a.out 2 test_src/1_line_0.txt > /dev/null
+Return value OK!
+cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=1 gnl_tester.c get_next_line.c get_next_line_utils.c
+valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=full ./a.out 2 test_src/1_line_long_nl.txt > /dev/null
+Return value OK!
+cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=1 gnl_tester.c get_next_line.c get_next_line_utils.c
+valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=full ./a.out 2 test_src/1_line_long_0.txt > /dev/null
+Return value OK!
+cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=1 gnl_tester.c get_next_line.c get_next_line_utils.c
+valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=full ./a.out 2 test_src/1_line_only_nl.txt > /dev/null
+Return value OK!
+cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=1 gnl_tester.c get_next_line.c get_next_line_utils.c
+valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=full ./a.out 2 test_src/1_line_empty.txt > /dev/null
+Return value OK!
+cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=1 gnl_tester.c get_next_line.c get_next_line_utils.c
+valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=full ./a.out 2 test_src/2_file_1longline.txt > /dev/null
+Return value OK!
+cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=1 gnl_tester.c get_next_line.c get_next_line_utils.c
+valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=full ./a.out 2 test_src/2_file_5nl.txt > /dev/null
+Return value OK!
+cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=1 gnl_tester.c get_next_line.c get_next_line_utils.c
+valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=full ./a.out 2 test_src/2_file_10_long_lines.txt > /dev/null
+Return value OK!
+cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=1 gnl_tester.c get_next_line.c get_next_line_utils.c
+valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=full ./a.out 2 test_src/2_file_100lines.txt > /dev/null
+Return value OK!
+cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=1 gnl_tester.c get_next_line.c get_next_line_utils.c
+valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=full ./a.out 2 test_src/2_file_100nl.txt > /dev/null
+Return value OK!
+cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=1 gnl_tester.c get_next_line.c get_next_line_utils.c
+valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=full ./a.out 2 test_src/2_file_empty.txt > /dev/null
+Return value OK!
+cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=1 gnl_tester.c get_next_line.c get_next_line_utils.c
+valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=full ./a.out 2 test_src/1_char.txt > /dev/null
+Tests with BUFFER_SIZE=41:
+Return value OK!
+cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=41 gnl_tester.c get_next_line.c get_next_line_utils.c
+valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=full ./a.out 2 test_src/2_file_5_lines.txt > /dev/null
+Return value OK!
+cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=41 gnl_tester.c get_next_line.c get_next_line_utils.c
+valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=full ./a.out 2 test_src/42_with_nl > /dev/null
+Return value OK!
+cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=41 gnl_tester.c get_next_line.c get_next_line_utils.c
+valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=full ./a.out 2 test_src/1_line_0.txt > /dev/null
+Return value OK!
+cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=41 gnl_tester.c get_next_line.c get_next_line_utils.c
+valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=full ./a.out 2 test_src/1_line_long_nl.txt > /dev/null
+Return value OK!
+cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=41 gnl_tester.c get_next_line.c get_next_line_utils.c
+valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=full ./a.out 2 test_src/1_line_long_0.txt > /dev/null
+Return value OK!
+cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=41 gnl_tester.c get_next_line.c get_next_line_utils.c
+valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=full ./a.out 2 test_src/1_line_only_nl.txt > /dev/null
+Return value OK!
+cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=41 gnl_tester.c get_next_line.c get_next_line_utils.c
+valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=full ./a.out 2 test_src/1_line_empty.txt > /dev/null
+Return value OK!
+cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=41 gnl_tester.c get_next_line.c get_next_line_utils.c
+valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=full ./a.out 2 test_src/2_file_1longline.txt > /dev/null
+Return value OK!
+cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=41 gnl_tester.c get_next_line.c get_next_line_utils.c
+valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=full ./a.out 2 test_src/2_file_5nl.txt > /dev/null
+Return value OK!
+cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=41 gnl_tester.c get_next_line.c get_next_line_utils.c
+valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=full ./a.out 2 test_src/2_file_10_long_lines.txt > /dev/null
+Return value OK!
+cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=41 gnl_tester.c get_next_line.c get_next_line_utils.c
+valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=full ./a.out 2 test_src/2_file_100lines.txt > /dev/null
+Return value OK!
+cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=41 gnl_tester.c get_next_line.c get_next_line_utils.c
+valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=full ./a.out 2 test_src/2_file_100nl.txt > /dev/null
+Return value OK!
+cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=41 gnl_tester.c get_next_line.c get_next_line_utils.c
+valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=full ./a.out 2 test_src/2_file_empty.txt > /dev/null
+Return value OK!
+cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=41 gnl_tester.c get_next_line.c get_next_line_utils.c
+valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=full ./a.out 2 test_src/1_char.txt > /dev/null
+Tests with BUFFER_SIZE=42:
+Return value OK!
+cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=42 gnl_tester.c get_next_line.c get_next_line_utils.c
+valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=full ./a.out 2 test_src/2_file_5_lines.txt > /dev/null
+Return value OK!
+cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=42 gnl_tester.c get_next_line.c get_next_line_utils.c
+valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=full ./a.out 2 test_src/42_with_nl > /dev/null
+Return value OK!
+cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=42 gnl_tester.c get_next_line.c get_next_line_utils.c
+valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=full ./a.out 2 test_src/1_line_0.txt > /dev/null
+Return value OK!
+cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=42 gnl_tester.c get_next_line.c get_next_line_utils.c
+valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=full ./a.out 2 test_src/1_line_long_nl.txt > /dev/null
+Return value OK!
+cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=42 gnl_tester.c get_next_line.c get_next_line_utils.c
+valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=full ./a.out 2 test_src/1_line_long_0.txt > /dev/null
+Return value OK!
+cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=42 gnl_tester.c get_next_line.c get_next_line_utils.c
+valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=full ./a.out 2 test_src/1_line_only_nl.txt > /dev/null
+Return value OK!
+cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=42 gnl_tester.c get_next_line.c get_next_line_utils.c
+valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=full ./a.out 2 test_src/1_line_empty.txt > /dev/null
+Return value OK!
+cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=42 gnl_tester.c get_next_line.c get_next_line_utils.c
+valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=full ./a.out 2 test_src/2_file_1longline.txt > /dev/null
+Return value OK!
+cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=42 gnl_tester.c get_next_line.c get_next_line_utils.c
+valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=full ./a.out 2 test_src/2_file_5nl.txt > /dev/null
+Return value OK!
+cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=42 gnl_tester.c get_next_line.c get_next_line_utils.c
+valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=full ./a.out 2 test_src/2_file_10_long_lines.txt > /dev/null
+Return value OK!
+cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=42 gnl_tester.c get_next_line.c get_next_line_utils.c
+valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=full ./a.out 2 test_src/2_file_100lines.txt > /dev/null
