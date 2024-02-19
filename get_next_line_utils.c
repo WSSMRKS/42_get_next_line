@@ -6,7 +6,7 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 19:31:20 by maweiss           #+#    #+#             */
-/*   Updated: 2024/02/19 20:29:15 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/02/19 21:32:10 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ size_t	ft_strlen(const char *str)
 	size_t	a;
 
 	a = 0;
-	while (str && *str)
+	while (*str)
 	{
 		a++;
 		str++;
@@ -58,9 +58,9 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	res = malloc(len + 1);
 	if (!res)
 		return (NULL);
-	while (tmp1 && *tmp1)
+	while (*tmp1)
 		*res++ = *tmp1++;
-	while (tmp2 && *tmp2)
+	while (*tmp2)
 		*res++ = *tmp2++;
 	*res = '\0';
 	return (&res[-len]);
