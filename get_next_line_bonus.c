@@ -6,7 +6,7 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 19:31:20 by maweiss           #+#    #+#             */
-/*   Updated: 2024/02/19 11:28:35 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/02/19 12:54:58 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,11 @@ char	**ft_split_nl(char *find_nl)
 				find_nl, &sign, '\n'))
 			ret[1] = ft_strdup_gnl(find_nl + ft_strlen_gnl(
 						find_nl, &sign, '\n'), '0');
+		else
+		{
+			ret[1] = malloc(sizeof(char));
+			ret[1][0] = 0;
+		}
 		// ret[1] = ft_strdup_gnl(find_nl
 		// 		+ ft_strlen_gnl(find_nl, &sign, '\n'), '0');
 	}
