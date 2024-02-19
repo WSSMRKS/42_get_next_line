@@ -1,5 +1,5 @@
 #!/bin/bash
-# Bash script to tester for project get_next_line from 42 Core Curriculum, by maweiss | https://github.com/WSSMRKS
+# Bash script of tester for project get_next_line from 42 Core Curriculum, by maweiss | https://github.com/WSSMRKS
 
 	echo "Welcome to the automated Tester for get_next_line of 42 Core Curriculum!"
 	echo "To run correctly the source files of the tester need to be put in the Project foler!"
@@ -7,14 +7,14 @@
 	echo "Results of the tests will be stored in: logfile.txt!"
 	echo "Please choose the test scenario:"
 	echo "1: Full test + Valgrind!"
-	echo "2: Full test including bonus + Valgrind!"
-	echo "3: Full test!"
-	echo "4: Full test including bonus!"
-	echo "5: Basic test with one line."
-	echo "6: Basic test with one file."
-	echo "7: Basic test reading from standard input."
-	echo "8: BONUS: Test for several different files at a time."
-	echo "0: Options for the tests."
+	# echo "2: Full test including bonus + Valgrind!"
+	# echo "3: Full test!"
+	# echo "4: Full test including bonus!"
+	# echo "5: Basic test with one line."
+	# echo "6: Basic test with one file."
+	# echo "7: Basic test reading from standard input."
+	# echo "8: BONUS: Test for several different files at a time."
+	# echo "0: Options for the tests."
 	echo "(all tests are performed with several different BUFFER_SIZES)"
 	echo "Type in your choice as a single digit!"
 	read line
@@ -337,7 +337,7 @@
 			BUFFER_SIZE=1
 			elif [ $ROUND == 2 ]
 			then
-			BUFFER_SIZE=10
+			BUFFER_SIZE=42
 			elif [ $ROUND == 3 ]
 			then
 			BUFFER_SIZE=100

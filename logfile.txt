@@ -25,7 +25,7 @@ Return value OK!
 Diff 11: OK!
 Return value OK!
 Diff 12: OK!
-Tests with BUFFER_SIZE=10:
+Tests with BUFFER_SIZE=42:
 Return value OK!
 Diff 0: OK!
 Return value OK!
