@@ -6,7 +6,7 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 19:31:20 by maweiss           #+#    #+#             */
-/*   Updated: 2024/02/19 10:03:30 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/02/19 11:26:45 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,18 +46,13 @@ int	ft_read_join(char **stbuff, int fd)
 
 	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	bytes_read = read(fd, buffer, BUFFER_SIZE);
-	if (bytes_read < BUFFER_SIZE && bytes_read == -1)
+	if (bytes_read < BUFFER_SIZE && bytes_read <= 0)
 	{
 		free(buffer);
-		return (-1);
-	}
-	else if (bytes_read < BUFFER_SIZE && bytes_read == 0)
-	{
-		free(buffer);
-		return (0);
+		return (bytes_read);
 	}
 	buffer[bytes_read] = 0;
-	if (bytes_read < BUFFER_SIZE)
+	if (bytes_read < BUFFER_SIZE && bytes_read > 0)
 	{
 		tapered_buffer = ft_strdup_gnl(buffer, '0');
 		free(buffer);
@@ -113,18 +108,17 @@ char	*get_next_line(int fd)
 
 	if (fd == -2)
 		ft_free(stbuff, 0);
+	if (fd < 0)
+		return (NULL);
 	ret = NULL;
 	while (ret == NULL)
 	{
 		rsplit = ft_split_nl(stbuff[fd]);
 		if (!rsplit)
-		{
-			ft_free(stbuff, 0);
 			return (NULL);
-		}
 		else if (rsplit[1] == NULL)
 		{
-			free(rsplit[1]);
+			// free(rsplit[1]);
 			stbuff[fd] = rsplit[0];
 			rsplit[0] = NULL;
 			free(rsplit);
@@ -133,7 +127,7 @@ char	*get_next_line(int fd)
 			{
 				if (res_read == -1)
 				{
-					free(stbuff[fd]);
+					// free(stbuff[fd]);
 					return (NULL);
 				}
 				if (res_read == 0)
