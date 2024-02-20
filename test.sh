@@ -112,7 +112,7 @@
 		# 	fi
 		# 	if [ "$(diff $LFILE $TFILE)" == "" ]
 		# 	then
-		# 	echo "Diff 1: OK!" | tee -a $LOGFILE
+		# 	echo "Diff 1: OK! (\"$TFILE\")" | tee -a $LOGFILE
 		# 	else
 		# 	echo "Diff 1: KO!"
 		# 	echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
@@ -148,7 +148,7 @@
 		# 	fi
 		# 	if [ "$(diff $LFILE $TFILE)" == "" ]
 		# 	then
-		# 	echo "Diff 2: OK!" | tee -a $LOGFILE
+		# 	echo "Diff 2: OK! \(\"$TFILE"\)" | tee -a $LOGFILE
 		# 	else
 		# 	echo "Diff 2: KO!"
 		# 	echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
@@ -184,7 +184,7 @@
 		# 	fi
 		# 	if [ "$(diff $LFILE $TFILE)" == "" ]
 		# 	then
-		# 	echo "Diff 3: OK!" | tee -a $LOGFILE
+		# 	echo "Diff 3: OK! \(\"$TFILE"\)" | tee -a $LOGFILE
 		# 	else
 		# 	echo "Diff 3: KO!"
 		# 	echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
@@ -220,7 +220,7 @@
 		# 	fi
 		# 	if [ "$(diff $LFILE $TFILE)" == "" ]
 		# 	then
-		# 	echo "Diff 4: OK!" | tee -a $LOGFILE
+		# 	echo "Diff 4: OK! \(\"$TFILE"\)" | tee -a $LOGFILE
 		# 	else
 		# 	echo "Diff 4: KO!"
 		# 	echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
@@ -256,7 +256,7 @@
 		# 	fi
 		# 	if [ "$(diff $LFILE $TFILE)" == "" ]
 		# 	then
-		# 	echo "Diff 5: OK!" | tee -a $LOGFILE
+		# 	echo "Diff 5: OK! \(\"$TFILE"\)" | tee -a $LOGFILE
 		# 	else
 		# 	echo "Diff 5: KO!"
 		# 	echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
@@ -292,7 +292,7 @@
 		# 	fi
 		# 	if [ "$(diff $LFILE $TFILE)" == "" ]
 		# 	then
-		# 	echo "Diff 6: OK!" | tee -a $LOGFILE
+		# 	echo "Diff 6: OK! \(\"$TFILE"\)" | tee -a $LOGFILE
 		# 	else
 		# 	echo "Diff 6: KO!"
 		# 	echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
@@ -377,9 +377,9 @@
 			fi
 			if [ "$(diff $LFILE $TFILE)" == "" ]
 			then
-			echo "Diff 0: OK!" | tee -a $LOGFILE
+			echo "Diff 0: OK! (\"$TFILE\")" | tee -a $LOGFILE
 			else
-			echo "Diff 0: KO!"
+			echo "Diff 0: KO! (\"$TFILE\")"
 			echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
 			if [ $VALGRIND == 1 ]
 			then
@@ -413,9 +413,9 @@
 			fi
 			if [ "$(diff $LFILE $TFILE)" == "" ]
 			then
-			echo "Diff 1: OK!" | tee -a $LOGFILE
+			echo "Diff 1: OK! (\"$TFILE\")" | tee -a $LOGFILE
 			else
-			echo "Diff 1: KO!"
+			echo "Diff 1: KO! (\"$TFILE\")"
 			echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
 			if [ $VALGRIND == 1 ]
 			then
@@ -449,9 +449,9 @@
 			fi
 			if [ "$(diff $LFILE $TFILE)" == "" ]
 			then
-			echo "Diff 2: OK!" | tee -a $LOGFILE
+			echo "Diff 2: OK! (\"$TFILE\")" | tee -a $LOGFILE
 			else
-			echo "Diff 2: KO!"
+			echo "Diff 2: KO! (\"$TFILE\")"
 			echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
 			if [ $VALGRIND == 1 ]
 			then
@@ -485,9 +485,9 @@
 			fi
 			if [ "$(diff $LFILE $TFILE)" == "" ]
 			then
-			echo "Diff 3: OK!" | tee -a $LOGFILE
+			echo "Diff 3: OK! (\"$TFILE\")" | tee -a $LOGFILE
 			else
-			echo "Diff 3: KO!"
+			echo "Diff 3: KO! (\"$TFILE\")"
 			echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
 			if [ $VALGRIND == 1 ]
 			then
@@ -521,9 +521,9 @@
 			fi
 			if [ "$(diff $LFILE $TFILE)" == "" ]
 			then
-			echo "Diff 4: OK!" | tee -a $LOGFILE
+			echo "Diff 4: OK! (\"$TFILE\")" | tee -a $LOGFILE
 			else
-			echo "Diff 4: KO!"
+			echo "Diff 4: KO! (\"$TFILE\")"
 			echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
 			if [ $VALGRIND == 1 ]
 			then
@@ -557,9 +557,9 @@
 			fi
 			if [ "$(diff $LFILE $TFILE)" == "" ]
 			then
-			echo "Diff 5: OK!" | tee -a $LOGFILE
+			echo "Diff 5: OK! (\"$TFILE\")" | tee -a $LOGFILE
 			else
-			echo "Diff 5: KO!"
+			echo "Diff 5: KO! (\"$TFILE\")"
 			echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
 			if [ $VALGRIND == 1 ]
 			then
@@ -593,9 +593,9 @@
 			fi
 			if [ "$(diff $LFILE $TFILE)" == "" ]
 			then
-			echo "Diff 6: OK!" | tee -a $LOGFILE
+			echo "Diff 6: OK! (\"$TFILE\")" | tee -a $LOGFILE
 			else
-			echo "Diff 6: KO!"
+			echo "Diff 6: KO! (\"$TFILE\")"
 			echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
 			if [ $VALGRIND == 1 ]
 			then
@@ -629,9 +629,9 @@
 			fi
 			if [ "$(diff $LFILE $TFILE)" == "" ]
 			then
-			echo "Diff 7: OK!" | tee -a $LOGFILE
+			echo "Diff 7: OK! (\"$TFILE\")" | tee -a $LOGFILE
 			else
-			echo "Diff 7: KO!"
+			echo "Diff 7: KO! (\"$TFILE\")"
 			echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
 			if [ $VALGRIND == 1 ]
 			then
@@ -665,9 +665,9 @@
 			fi
 			if [ "$(diff $LFILE $TFILE)" == "" ]
 			then
-			echo "Diff 8: OK!" | tee -a $LOGFILE
+			echo "Diff 8: OK! (\"$TFILE\")" | tee -a $LOGFILE
 			else
-			echo "Diff 8: KO!"
+			echo "Diff 8: KO! (\"$TFILE\")"
 			echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
 			if [ $VALGRIND == 1 ]
 			then
@@ -701,9 +701,9 @@
 			fi
 			if [ "$(diff $LFILE $TFILE)" == "" ]
 			then
-			echo "Diff 9: OK!" | tee -a $LOGFILE
+			echo "Diff 9: OK! (\"$TFILE\")" | tee -a $LOGFILE
 			else
-			echo "Diff 9: KO!"
+			echo "Diff 9: KO! (\"$TFILE\")"
 			echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
 			if [ $VALGRIND == 1 ]
 			then
@@ -740,9 +740,9 @@
 			fi
 			if [ "$(diff $LFILE $TFILE)" == "" ]
 			then
-			echo "Diff 10: OK!" | tee -a $LOGFILE
+			echo "Diff 10: OK! (\"$TFILE\")" | tee -a $LOGFILE
 			else
-			echo "Diff 10: KO!"
+			echo "Diff 10: KO! (\"$TFILE\")"
 			echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
 			if [ $VALGRIND == 1 ]
 			then
@@ -776,9 +776,9 @@
 			fi
 			if [ "$(diff $LFILE $TFILE)" == "" ]
 			then
-			echo "Diff 11: OK!" | tee -a $LOGFILE
+			echo "Diff 11: OK! (\"$TFILE\")" | tee -a $LOGFILE
 			else
-			echo "Diff 11: KO!"
+			echo "Diff 11: KO! (\"$TFILE\")"
 			echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
 			if [ $VALGRIND == 1 ]
 			then
@@ -812,9 +812,9 @@
 			fi
 			if [ "$(diff $LFILE $TFILE)" == "" ]
 			then
-			echo "Diff 12: OK!" | tee -a $LOGFILE
+			echo "Diff 12: OK! (\"$TFILE\")" | tee -a $LOGFILE
 			else
-			echo "Diff 12: KO!"
+			echo "Diff 12: KO! (\"$TFILE\")"
 			echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
 			if [ $VALGRIND == 1 ]
 			then
@@ -848,9 +848,9 @@
 			fi
 			if [ "$(diff $LFILE $TFILE)" == "" ]
 			then
-			echo "Diff 13: OK!" | tee -a $LOGFILE
+			echo "Diff 13: OK! (\"$TFILE\")" | tee -a $LOGFILE
 			else
-			echo "Diff 13: KO!"
+			echo "Diff 13: KO! (\"$TFILE\")"
 			echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
 			if [ $VALGRIND == 1 ]
 			then
@@ -884,9 +884,9 @@
 			fi
 			if [ "$(diff $LFILE $TFILE)" == "" ]
 			then
-			echo "Diff 13: OK!" | tee -a $LOGFILE
+			echo "Diff 14: OK! (\"$TFILE\")" | tee -a $LOGFILE
 			else
-			echo "Diff 13: KO!"
+			echo "Diff 14: KO! (\"$TFILE\")"
 			echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
 			if [ $VALGRIND == 1 ]
 			then

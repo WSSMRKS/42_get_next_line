@@ -6,12 +6,11 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 14:35:10 by maweiss           #+#    #+#             */
-/*   Updated: 2024/02/20 16:50:15 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/02/20 17:27:58 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <dlfcn.h>
 
 static char	*ft_fill_buffer(char *full_buff, int *nbr_nl)
 {
@@ -42,7 +41,6 @@ static char	*ft_ret_val(char *full_buff, int *nbr_nl)
 
 static char	*ft_read_if_no_nl(char *full_buff, int fd)
 {
-	int		len;
 	int		res_read;
 	char	*buffer;
 	char	*to_free;
@@ -57,13 +55,11 @@ static char	*ft_read_if_no_nl(char *full_buff, int fd)
 			buffer[res_read] = 0;
 			to_free = full_buff;
 			full_buff = ft_strjoin(full_buff, buffer);
-			if (to_free)
-				free(to_free);
+			free(to_free);
 		}
 		free(buffer);
 	}
-	len = ft_strlen(full_buff);
-	if ((res_read <= 0 && len == 0) || res_read == -1)
+	if ((res_read <= 0 && ft_strlen(full_buff) == 0) || res_read == -1)
 	{
 		free(full_buff);
 		return (NULL);
@@ -98,17 +94,3 @@ char	*get_next_line(int fd)
 	stbuff[fd] = ft_fill_buffer(stbuff[fd], &nbr_nl);
 	return (ret);
 }
-
-/*
-Concept:
-- Validate fd:
-	fd < 0 Free everything, return NULL
-	fd >= 0 valid start processing
-- Analyze buffer:
-	search for '\n' in existing buffer. (strchr \n)
-		Found:	take string including nl sign (strchr \n).
-				Put rest to buffer res (strlen),
-				return
-		Not Found: read_join repeat search for '\n'
-		repeat
-*/
