@@ -6,7 +6,7 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:00:04 by maweiss           #+#    #+#             */
-/*   Updated: 2024/02/19 21:52:07 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/02/20 16:06:14 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 
 # endif
 # ifndef MAX_FD
-#  define MAX_FD 100 + 1
+#  define MAX_FD 1048576
 // max should be 1048576 + 1
 
 # endif

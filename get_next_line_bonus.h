@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/05 19:32:04 by maweiss           #+#    #+#             */
-/*   Updated: 2024/02/16 22:34:11 by maweiss          ###   ########.fr       */
+/*   Created: 2024/02/19 17:00:04 by maweiss           #+#    #+#             */
+/*   Updated: 2024/02/20 17:05:03 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,15 @@
 
 # endif
 # ifndef MAX_FD
-#  define MAX_FD 100 + 1
+#  define MAX_FD 1048576
 // max should be 1048576 + 1
 
 # endif
 
 char	*get_next_line(int fd);
+size_t	ft_strlen(const char *str);
+char	*ft_strchr(const char *s, int c);
 char	*ft_strjoin(char const *s1, char const *s2);
-void	ft_free(char **tofree, int mode);
-size_t	ft_strlen_gnl(const char *str, char *sign, char mode);
-char	*ft_strdup_gnl(char *src, char mode);
-int		ft_read_join(char **stbuff, int fd);
-char	**ft_split_nl(char *find_nl);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 #endif

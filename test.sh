@@ -848,9 +848,45 @@
 			fi
 			if [ "$(diff $LFILE $TFILE)" == "" ]
 			then
-			echo "Diff 12: OK!" | tee -a $LOGFILE
+			echo "Diff 13: OK!" | tee -a $LOGFILE
 			else
-			echo "Diff 12: KO!"
+			echo "Diff 13: KO!"
+			echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
+			if [ $VALGRIND == 1 ]
+			then
+			echo "valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S" >> $LOGFILE
+			else
+			echo "./a.out 2 $TFILE > $S" >> $LOGFILE
+			fi
+			SUCCESS=0
+			fi
+			TFILE="test_src/empty.txt"
+			if [ $VALGRIND == 1 ]
+			then
+			valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S
+			else
+			./a.out 2 $TFILE > $S
+			fi
+			if [ $? == 5 ]
+			then
+			echo "valgrind error!"
+			echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
+			echo "valgrind -s --show-leak-kinds=all --error-exitcode=5 --exit-on-first-error=no --leak-check=$LEAK_CHECK ./a.out 2 $TFILE > $S" >> $LOGFILE
+			elif [ $? == 0 ]
+			then
+			echo "program error"
+			echo "./a.out 2 $TFILE > $S" >> $LOGFILE
+			elif [ $? == 1 ]
+			then
+			echo "Return value OK!" | tee -a $LOGFILE
+			else
+			echo "Return value undefined"
+			fi
+			if [ "$(diff $LFILE $TFILE)" == "" ]
+			then
+			echo "Diff 13: OK!" | tee -a $LOGFILE
+			else
+			echo "Diff 13: KO!"
 			echo "cc -g -Wall -Werror -Wextra -D BUFFER_SIZE=$BUFFER_SIZE gnl_tester.c get_next_line.c get_next_line_utils.c" >> $LOGFILE
 			if [ $VALGRIND == 1 ]
 			then

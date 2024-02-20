@@ -6,7 +6,7 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 20:00:16 by maweiss           #+#    #+#             */
-/*   Updated: 2024/02/19 18:49:49 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/02/20 10:42:19 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include "get_next_line.h"
 #include <stdio.h>
 #include <dirent.h>
+
+int next_read_error = 0;
 
 static size_t	ft_strlen_tester(const char *str)
 {
@@ -28,7 +30,7 @@ static size_t	ft_strlen_tester(const char *str)
 	return (a);
 }
 
-int	single_file(char *file)
+static int	single_file(char *file)
 {
 	int		read;
 	int		log;
@@ -71,7 +73,7 @@ int	single_file(char *file)
 	}
 }
 
-int	inval_fd(char *file)
+static int	inval_fd(char *file)
 {
 	int		read;
 	int		log;
@@ -80,8 +82,8 @@ int	inval_fd(char *file)
 
 	done = 0;
 	read = open(file, O_RDONLY);
-	close(read);
 	log = open("tmp.txt", O_WRONLY | O_CREAT | O_TRUNC, 0666);
+	close(read);
 	if (read == -1 || log == -1)
 	{
 		printf("Error 1: Error while opening file\n");
@@ -96,7 +98,6 @@ int	inval_fd(char *file)
 		while (done != 1)
 		{
 			line = get_next_line(read);
-			printf("%s", get_next_line(-1));
 			if (!line)
 				done = 1;
 			else
@@ -242,6 +243,8 @@ int	main(int argc, char **argv)
 		printf("single line successfully tested\n");
 	else if (choose == '2' && single_file(argv[2]) == 1)
 		printf("single file successfully tested\n");
+	else if (choose == '5' && inval_fd(argv[2]) == 1)
+		printf("inval fd successfully tested\n");
 	else if (choose == '3' && multiple_files(argv[2], argv[3]) == 1)
 		printf("multiple files successfully tested\n");
 	else if (choose == '4' && inval_fd(argv[2]) == 1)
