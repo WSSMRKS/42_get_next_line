@@ -6,7 +6,7 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:00:04 by maweiss           #+#    #+#             */
-/*   Updated: 2024/02/20 17:25:54 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/03/06 10:49:48 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # ifndef MAX_FD
 #  define MAX_FD 1048576
 // ulimit -n --> Soft limit
-// ulimit -H --> Hard limit
+// ulimit -n -H --> Hard limit
 
 # endif
 

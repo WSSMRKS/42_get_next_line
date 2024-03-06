@@ -6,7 +6,7 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 14:35:10 by maweiss           #+#    #+#             */
-/*   Updated: 2024/02/20 17:32:11 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/02/23 11:01:46 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static char	*ft_ret_val(char *full_buff, int *nbr_nl)
 		return (ft_substr(full_buff, 0, *nbr_nl));
 	}
 	else
-		return (ft_substr(full_buff, 0, strlen(full_buff)));
+		return (ft_substr(full_buff, 0, ft_strlen(full_buff)));
 }
 
 static char	*ft_read_if_no_nl(char *full_buff, int fd)

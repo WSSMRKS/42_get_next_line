@@ -6,7 +6,7 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 14:35:10 by maweiss           #+#    #+#             */
-/*   Updated: 2024/02/20 17:27:58 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/03/06 10:42:53 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,30 +36,40 @@ static char	*ft_ret_val(char *full_buff, int *nbr_nl)
 		return (ft_substr(full_buff, 0, *nbr_nl));
 	}
 	else
-		return (ft_substr(full_buff, 0, strlen(full_buff)));
+		return (ft_substr(full_buff, 0, ft_strlen(full_buff)));
+}
+
+char	*ft_read(char *full_buff, int fd, int *res_read)
+{
+	char	*to_free;
+	char	*buffer;
+
+	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!buffer)
+	{
+		free(full_buff);
+		return (NULL);
+	}
+	*res_read = read(fd, buffer, BUFFER_SIZE);
+	if (*res_read > 0)
+	{
+		buffer[*res_read] = 0;
+		to_free = full_buff;
+		full_buff = ft_strjoin(full_buff, buffer);
+		free(to_free);
+	}
+	free(buffer);
+	return (full_buff);
 }
 
 static char	*ft_read_if_no_nl(char *full_buff, int fd)
 {
 	int		res_read;
-	char	*buffer;
-	char	*to_free;
 
 	res_read = 1;
 	while (!ft_strchr(full_buff, '\n') && res_read > 0)
-	{
-		buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-		res_read = read(fd, buffer, BUFFER_SIZE);
-		if (res_read > 0)
-		{
-			buffer[res_read] = 0;
-			to_free = full_buff;
-			full_buff = ft_strjoin(full_buff, buffer);
-			free(to_free);
-		}
-		free(buffer);
-	}
-	if ((res_read <= 0 && ft_strlen(full_buff) == 0) || res_read == -1)
+		full_buff = ft_read(full_buff, fd, &res_read);
+	if ((res_read == 0 && ft_strlen(full_buff) == 0) || res_read == -1)
 	{
 		free(full_buff);
 		return (NULL);
@@ -74,7 +84,7 @@ char	*get_next_line(int fd)
 	int			nbr_nl;
 	char		*ret;
 
-	if (fd < 0 || fd >= MAX_FD || BUFFER_SIZE < 1 || BUFFER_SIZE > INT_MAX)
+	if (fd < 0 || fd > MAX_FD || BUFFER_SIZE < 1 || BUFFER_SIZE > INT_MAX)
 		return (NULL);
 	else
 	{
